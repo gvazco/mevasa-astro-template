@@ -1,0 +1,28 @@
+---
+import FooterBox from "@/components/ui/FooterBox.astro";
+---
+
+<footer class="bg-coffee-900 pt-20">
+  <div class="max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-3 gap-5">
+    <FooterBox heading="Ubicación">
+      <p>Av. Luis Donaldo Colosio #1166</p>
+      <p>Col. La calzada. Naucalpan, EdoMex.</p>
+    </FooterBox>
+    <FooterBox heading="Reservación">
+      <p>Tel. 55 2353-9837</p>
+      <a href="tel+552353 9837" class="text-coffee-400 hover:text-coffee-300">
+        Llama para reservar
+      </a>
+    </FooterBox>
+    <FooterBox heading="Horario">
+      <p>Mie - Vie: 19:00 - 22:00</p>
+      <p>Sab - Dom: 18:00 - 23:00</p>
+      <p>Lun - Mar: Cerrado</p>
+    </FooterBox>
+  </div>
+  <p class="py-10 text-center text-white text-sm">
+    Todos los derechos reservados. La cafetería 1939. &copy; {
+      new Date().getFullYear()
+    }
+  </p>
+</footer>

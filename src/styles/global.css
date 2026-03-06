@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --default-font-family: "Outfit", sans-serif;
+
+  --color-coffee-50: #fcf8ee;
+  --color-coffee-100: #ebe7de;
+  --color-coffee-200: #ead59d;
+  --color-coffee-300: #dfbb6a;
+  --color-coffee-400: #d7a648;
+  --color-coffee-500: #ce8a32;
+  --color-coffee-600: #b66b29;
+  --color-coffee-700: #975026;
+  --color-coffee-800: #7c3f24;
+  --color-coffee-900: #5e311e;
+  --color-coffee-950: #3a1a0e;
+
+  --icon-size: 6rem;
+}
+
+@utility bg-image {
+  background-image: url("../assets/bg_home.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+@utility coffee-icon {
+  content: "";
+  background-image: url("../assets/coffee.svg");
+  background-size: var(--icon-size);
+  background-position: center;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  display: block;
+  margin-inline: auto;
+}
+
+@utility font-secondary {
+  font-family: "PT Sans", sans-serif;
+}
+
+@utility bg-menu-image {
+  background-image: url("../assets/menu_artwork.svg");
+}
+
+/* Estilizado del elemento audio y sus controles */
+.wp-audio-shortcode {
+  width: 100% !important;
+  background: var(--color-coffee-100) !important;
+  border-radius: 0 !important;
+  /* padding: 1.5rem !important; */
+  margin: 1rem 0 !important;
+}
+
+/* Controles de audio personalizados */
+audio::-webkit-media-controls-panel {
+  background-color: var(--color-coffee-200) !important;
+  border-radius: 0;
+}
+
+/* Botón de play/pause */
+audio::-webkit-media-controls-play-button {
+  background-color: var(--color-coffee-600);
+  border-radius: 0;
+  transform: scale(1.5);
+  margin: 0 0.25rem 0 0;
+}
+
+/* Barra de progreso */
+audio::-webkit-media-controls-timeline {
+  background-color: var(--color-coffee-300);
+  border-radius: 0;
+  margin: 0 1rem;
+}
+
+/* Controles de volumen */
+audio::-webkit-media-controls-volume-slider {
+  background-color: var(--color-coffee-300);
+  border-radius: 0;
+  padding: 0 0.5rem;
+}
+
+/* Botón de mute */
+audio::-webkit-media-controls-mute-button {
+  background-color: var(--color-coffee-500);
+  border-radius: 0;
+  transform: scale(1.2);
+}
+
+/* Tiempo actual/duración */
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  color: var(--color-coffee-900);
+  font-family: var(--default-font-family);
+  font-weight: bold;
+  border-radius: 0;
+}
+
+/* Estilos para Firefox */
+audio {
+  border: none;
+  height: 3.5rem;
+  padding: 1rem;
+}
+
+.input-label {
+  @apply text-coffee-900 uppercase font-bold text-lg;
+}
+
+.input-field {
+  @apply border-coffee-900 border-2 p-2;
+}
