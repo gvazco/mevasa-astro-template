@@ -3,9 +3,7 @@ const navigation = [
   { name: "Inicio", href: "/" },
   { name: "Nosotros", href: "/nosotros/" },
   { name: "Blog", href: "/blog/" },
-  { name: "Proceso", href: "/proceso/" },
-  { name: "Menú", href: "/menu/" },
-  { name: "Galería", href: "/galeria/" },
+  { name: "Catálogo", href: "/catalogo/" },
   { name: "Contacto", href: "/contacto/" },
 ];
 
@@ -16,7 +14,7 @@ const isActive = (href: string) => {
 };
 ---
 
-<nav class="flex flex-col items-center lg:flex-row gap-3">
+<nav class="flex flex-col items-center md:flex-row gap-3">
   {
     navigation.map((item) => (
       <a

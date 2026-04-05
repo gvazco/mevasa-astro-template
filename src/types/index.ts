@@ -1,3 +1,4 @@
+import { navigate } from "astro/virtual-modules/transitions-router.js";
 import { z } from "zod";
 
 const imageSchema = z.object({
@@ -60,7 +61,7 @@ export const CategorySchema = z.object({
 export const CategoriesSlugSchema = z.array(
   CategorySchema.pick({
     slug: true,
-  })
+  }),
 );
 
 const CategoriesSchema = z.array(CategorySchema);
@@ -74,10 +75,22 @@ export const PostSchema = BaseWPSchema.omit({
 
 export const PostsSchema = z.array(PostSchema);
 
+export const ProductSchema = BaseWPSchema.omit({
+  acf: true,
+  content: true,
+}).extend({
+  date: z.string(),
+  category_details: CategoriesSchema,
+});
+
+export const ProductsSchema = z.array(ProductSchema);
+
 const MenuItemSchema = BaseWPSchema.pick({
   title: true,
+  slug: true,
   featured_images: true,
 }).extend({
+  link: z.string(),
   acf: z.object({
     description: z.string(),
     price: z.coerce.number(),
@@ -108,7 +121,8 @@ export const ContactPageSchema = BaseWPSchema.extend({
 });
 
 export type Post = z.infer<typeof PostSchema>;
+export type Product = z.infer<typeof ProductSchema>;
+export type MenuItem = z.infer<typeof MenuItemSchema>;
 export type Gallery = z.infer<typeof gallerySchema>;
 export type FeatureImages = z.infer<typeof featureImagesSchema>;
 export type Location = z.infer<typeof LocationSchema>;
-

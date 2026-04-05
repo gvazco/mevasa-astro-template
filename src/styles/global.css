@@ -15,7 +15,7 @@
   --color-coffee-900: #5e311e;
   --color-coffee-950: #3a1a0e;
 
-  --icon-size: 6rem;
+  --icon-size: 4rem;
 }
 
 @utility bg-image {
@@ -26,13 +26,14 @@
 
 @utility coffee-icon {
   content: "";
-  background-image: url("../assets/coffee.svg");
+  background-image: url("../assets/casco.png");
   background-size: var(--icon-size);
   background-position: center;
   width: var(--icon-size);
   height: var(--icon-size);
   display: block;
   margin-inline: auto;
+  margin-top: 1rem;
 }
 
 @utility font-secondary {
@@ -109,4 +110,33 @@ audio {
 
 .input-field {
   @apply border-coffee-900 border-2 p-2;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-pagination-bullet {
+  opacity: var(--swiper-pagination-bullet-inactive-opacity, 1) !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: white !important;
 }

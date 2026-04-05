@@ -4,40 +4,28 @@ import CategoryIconLabel from "@/components/ui/CategoryIconLabel.astro";
 import bg from "@/assets/bg_home.jpg";
 import HomeGallery from "@/components/gallery/HomeGallery.astro";
 import ProductsMenu from "@/components/menu/ProductsMenu.astro";
+import SalesGrid from "@/components/ui/SalesGrid.astro";
 ---
 
 <Layout
-  title="Inicio"
-  subtitle="Disfruta de una deliciosa taza de cafe"
+  title="Especialistas en lámina de acero"
+  subtitle="Acero, Ferretería y Materiales de Construcción"
   bgImage={bg.src}
 >
-  <h2
-    class="text-coffee-400 uppercase text-center text-lg font-black mb-10 after:coffee-icon"
-  >
-    Conoce más
-    <span class="text-4xl block text-coffee-900">sobre nosotros</span>
-  </h2>
-  <p class="text-center text-lg mb-10">
-    Desde 1939, nuestra cafetería ha sido un rincón acogedor donde el buen café
-    y la comida hecha con cariño son protagonistas. Aquí no solo vienes a
-    disfrutar de una bebida: vienes a saborear el resultado de décadas de
-    dedicación, recetas caseras y una selección cuidadosa de ingredientes
-    frescos y de calidad.
+  <p class="text-center text-lg mt-1">
+    Mevasa Comercializadora se especialisa en la venta de lámina de acero,
+    accesorios de fijación, montaje, sellos, aislantes, molduras, herramientas y
+    productos ferreteros. Gracias a nuestra experiencia y compromiso, hemos
+    logrado llevar soluciones a clientes en toda la República Mexicana.
   </p>
 
-  <p class="text-center text-lg mb-10">
-    En cada plato y en cada taza encontrarás el equilibrio perfecto entre
-    tradición y sabor. Desde nuestro café artesanal hasta nuestros desayunos,
-    almuerzos y repostería, todo está preparado con productos naturales, sin
-    atajos ni artificios.
-  </p>
-
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-10">
+  <!-- <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-10">
     <CategoryIconLabel icon="icon_coffee.svg" text="Café" />
     <CategoryIconLabel icon="icon_dessert.svg" text="Postres" />
     <CategoryIconLabel icon="icon_tea.svg" text="Té" />
-  </div>
+  </div> -->
 
-  <HomeGallery slot="after-main-content" />
-  <ProductsMenu slot="after-main-content" />
+  <!-- <HomeGallery slot="after-main-content" /> -->
+  <!-- <ProductsMenu slot="after-main-content" /> -->
+  <SalesGrid />
 </Layout>

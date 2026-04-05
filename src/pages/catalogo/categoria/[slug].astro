@@ -1,10 +1,10 @@
 ---
-import { CategoriesSlugSchema, CategorySchema, PostsSchema } from "@/types";
+import { CategoriesSlugSchema, CategorySchema, ProductsSchema } from "@/types";
 import Layout from "@/layouts/Layout.astro";
-import PostCard from "@/components/blog/PostCard.astro";
+import PostCard from "@/components/products/PostCard.astro";
 export async function getStaticPaths() {
   const res = await fetch(
-    `${import.meta.env.API_URL}/categories?_fields=slug,name`,
+    `${import.meta.env.API_URL}/product_categories?_fields=slug,name`,
   );
   const json = await res.json();
   const categories = CategoriesSlugSchema.parse(json);
@@ -14,20 +14,20 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const catUrl = `${import.meta.env.API_URL}/categories?slug=${slug}`;
+const catUrl = `${import.meta.env.API_URL}/product_categories?slug=${slug}`;
 const catRes = await fetch(catUrl);
 const catJson = await catRes.json();
 const category = CategorySchema.parse(catJson[0]);
 
-const postsUrl = `${import.meta.env.API_URL}/posts?categories=${category.id}`;
+const postsUrl = `${import.meta.env.API_URL}/products?product_categories=${category.id}`;
 const postsRes = await fetch(postsUrl);
 const postsJson = await postsRes.json();
-const posts = PostsSchema.parse(postsJson);
+const posts = ProductsSchema.parse(postsJson);
 ---
 
 <Layout
-  title={`Posts en la categoría: ${category.name}`}
-  subtitle={`Posts en la categoría: ${category.name}`}
+  title={`Productos en la categoría: ${category.name}`}
+  subtitle={`Productos en la categoría: ${category.name}`}
   bgImage={posts[0].featured_images.full.url}
 >
   {posts.map((post) => <PostCard post={post} />)}
