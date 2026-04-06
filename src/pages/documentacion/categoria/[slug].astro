@@ -1,7 +1,7 @@
 ---
 import { CategoriesSlugSchema, CategorySchema, PostsSchema } from "@/types";
 import Layout from "@/layouts/Layout.astro";
-import PostCard from "@/components/blog/PostCard.astro";
+import PostCard from "@/components/documentacion/PostCard.astro";
 export async function getStaticPaths() {
   const res = await fetch(
     `${import.meta.env.API_URL}/categories?_fields=slug,name`,

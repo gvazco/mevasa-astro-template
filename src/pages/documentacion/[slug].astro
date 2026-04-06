@@ -1,9 +1,9 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import PostLayout from "@/layouts/PostLayout.astro";
 import { Picture } from "astro:assets";
 import { PostSchema } from "@/types";
-import PostMeta from "@/components/blog/PostMeta.astro";
-import PostCategories from "@/components/blog/PostCategories.astro";
+import PostMeta from "@/components/documentacion/PostMeta.astro";
+import PostCategories from "@/components/documentacion/PostCategories.astro";
 
 export const prerender = false;
 
@@ -15,7 +15,7 @@ if (!post.success) return Astro.redirect("/404");
 const { title, featured_images, date, content, category_details } = post.data;
 ---
 
-<Layout
+<PostLayout
   title={title.rendered}
   subtitle={title.rendered}
   bgImage={featured_images.full.url}
@@ -39,4 +39,4 @@ const { title, featured_images, date, content, category_details } = post.data;
 
     <div set:html={content.rendered} class="text-lg space-y-3 mt-5" />
   </article>
-</Layout>
+</PostLayout>

@@ -1,4 +1,3 @@
-import { navigate } from "astro/virtual-modules/transitions-router.js";
 import { z } from "zod";
 
 const imageSchema = z.object({
@@ -76,11 +75,23 @@ export const PostSchema = BaseWPSchema.omit({
 export const PostsSchema = z.array(PostSchema);
 
 export const ProductSchema = BaseWPSchema.omit({
-  acf: true,
   content: true,
 }).extend({
   date: z.string(),
   category_details: CategoriesSchema,
+  acf: z.object({
+    brand: z.string(),
+    summary: z.string(),
+    description: z.string(),
+    long: z.string(),
+    width: z.string(),
+    thickness: z.string(),
+    caliber: z.string(),
+    shipment: z.string(),
+    button_label: z.string(),
+    navigation: z.string(),
+    price: z.coerce.number(),
+  }),
 });
 
 export const ProductsSchema = z.array(ProductSchema);
