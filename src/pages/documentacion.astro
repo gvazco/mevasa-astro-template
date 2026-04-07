@@ -10,9 +10,9 @@ console.log(data);
 ---
 
 <PostLayout
-  title="Blog"
+  title="Documentación"
   subtitle="Documentación"
-  bgImage={data.featured_images.full.url}
+  bgImage={data?.featured_images?.full?.url || ""}
 >
   <div
     class="text-xl space-y-3 mt-10 lg:mt-0"

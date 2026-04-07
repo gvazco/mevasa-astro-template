@@ -28,7 +28,7 @@ const posts = PostsSchema.parse(postsJson);
 <Layout
   title={`Posts en la categoría: ${category.name}`}
   subtitle={`Posts en la categoría: ${category.name}`}
-  bgImage={posts[0].featured_images.full.url}
+  bgImage={posts[0]?.featured_images?.full?.url || ""}
 >
   {posts.map((post) => <PostCard post={post} />)}
 </Layout>

@@ -18,7 +18,7 @@ const { title, featured_images, date, content, category_details } = post.data;
 <PostLayout
   title={title.rendered}
   subtitle={title.rendered}
-  bgImage={featured_images.full.url}
+  bgImage={featured_images?.full?.url || ""}
 >
   <article class="space-y-5 max-w-4xl mx-auto">
     <PostMeta date={date} />
@@ -29,10 +29,10 @@ const { title, featured_images, date, content, category_details } = post.data;
     }
 
     <Picture
-      src={featured_images.full.url}
+      src={featured_images?.full?.url || ""}
       alt={title.rendered}
-      width={featured_images.full.width}
-      height={featured_images.full.height}
+      width={featured_images?.full?.width || 600}
+      height={featured_images?.full?.height || 600}
       formats={["avif", "webp"]}
       class="w-full"
     />

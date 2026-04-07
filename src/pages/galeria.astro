@@ -12,7 +12,7 @@ console.log(data);
 <Layout
   title="Galería"
   subtitle={data.acf.subtitle}
-  bgImage={data.featured_images.full.url}
+  bgImage={data?.featured_images?.full?.url || ""}
 >
   <GalleryGrid gallery={data.gallery} />
 </Layout>

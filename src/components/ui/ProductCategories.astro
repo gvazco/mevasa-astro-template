@@ -1,0 +1,22 @@
+---
+import { ProductCategoriesSchema } from "@/types";
+const catUrl = `${import.meta.env.API_URL}/product_categories?per_page=20`;
+const catResponse = await fetch(catUrl);
+const catJson = await catResponse.json();
+const catData = ProductCategoriesSchema.parse(catJson);
+
+// console.log(catData);
+---
+
+<div class="mt-3 flex flex-wrap gap-2">
+  {
+    catData.map((cat) => (
+      <a
+        href={`/catalogo/categoria/${cat.slug}`}
+        class="py-1 px-5 bg-coffee-600 hover:bg-coffee-500 text-sm text-white mr-2 rounded mt-1"
+      >
+        {cat.name}
+      </a>
+    ))
+  }
+</div>

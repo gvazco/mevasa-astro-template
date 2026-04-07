@@ -1,6 +1,6 @@
 ---
 import { CategoriesSlugSchema, CategorySchema, ProductsSchema } from "@/types";
-import Layout from "@/layouts/Layout.astro";
+import PostLayout from "@/layouts/PostLayout.astro";
 import PostCard from "@/components/products/PostCard.astro";
 export async function getStaticPaths() {
   const res = await fetch(
@@ -25,10 +25,10 @@ const postsJson = await postsRes.json();
 const posts = ProductsSchema.parse(postsJson);
 ---
 
-<Layout
+<PostLayout
   title={`Productos en la categoría: ${category.name}`}
   subtitle={`Productos en la categoría: ${category.name}`}
-  bgImage={posts[0].featured_images.full.url}
+  bgImage={posts[0]?.featured_images?.full?.url || ""}
 >
   {posts.map((post) => <PostCard post={post} />)}
-</Layout>
+</PostLayout>

@@ -12,19 +12,19 @@ console.log(data);
 <Layout
   title="Nosotros"
   subtitle={data.acf.subtitle}
-  bgImage={data.featured_images.full.url}
+  bgImage={data?.featured_images?.full?.url || ""}
 >
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
     <Picture
-      src={data.featured_images.medium_large.url}
-      alt={data.title.rendered}
-      width={data.featured_images.medium_large.width}
-      height={data.featured_images.medium_large.height}
+      src={data?.featured_images?.medium_large?.url || ""}
+      alt={data?.title.rendered}
+      width={data?.featured_images?.medium_large?.width || 600}
+      height={data?.featured_images?.medium_large?.height || 600}
       formats={["avif", "webp"]}
     />
     <div
       class="text-xl space-y-3 mt-10 lg:mt-0"
-      set:html={data.content.rendered}
+      set:html={data?.content?.rendered}
     />
   </div>
 </Layout>

@@ -13,7 +13,7 @@ const processKeys = Array.from({ length: 5 }, (_, i) => `process_${i + 1}`);
 <Layout
   title="Proceso"
   subtitle={data.acf.subtitle}
-  bgImage={data.featured_images.full.url}
+  bgImage={data?.featured_images?.full?.url || ""}
 >
   <div
     class="text-xl space-y-3 mt-10 lg:mt-0"

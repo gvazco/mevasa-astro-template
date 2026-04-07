@@ -31,10 +31,10 @@ console.log(post);
   </div>
 
   <Picture
-    src={post.featured_images.medium_large.url}
-    alt={post.title.rendered}
-    width={post.featured_images.medium_large.width}
-    height={post.featured_images.medium_large.height}
+    src={post?.featured_images?.medium_large?.url || ""}
+    alt={post?.title.rendered}
+    width={post?.featured_images?.medium_large?.width || 600}
+    height={post?.featured_images?.medium_large?.height || 600}
     formats={["avif", "webp"]}
     class="w-full lg:w-96 h-64 object-cover rounded-2xl"
   />

@@ -22,7 +22,7 @@ export const BaseWPSchema = z.object({
   content: z.object({
     rendered: z.string(),
   }),
-  featured_images: featureImagesSchema,
+  featured_images: featureImagesSchema.optional(),
   acf: z.object({
     subtitle: z.string(),
   }),
@@ -130,6 +130,14 @@ export const ContactPageSchema = BaseWPSchema.extend({
     })
     .catchall(LocationSchema),
 });
+
+const ProductCategorySchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  slug: z.string(),
+});
+
+export const ProductCategoriesSchema = z.array(ProductCategorySchema);
 
 export type Post = z.infer<typeof PostSchema>;
 export type Product = z.infer<typeof ProductSchema>;

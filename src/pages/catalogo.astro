@@ -1,6 +1,7 @@
 ---
 import PostLayout from "@/layouts/PostLayout.astro";
 import ProductsPosts from "@/components/products/ProductsPosts.astro";
+import ProductCategories from "@/components/ui/ProductCategories.astro";
 import { BaseWPSchema } from "@/types";
 const url = `${import.meta.env.API_URL}/pages?slug=catalogo`;
 const response = await fetch(url);
@@ -12,12 +13,13 @@ console.log(data);
 <PostLayout
   title="Catálogo"
   subtitle="Catálogo"
-  bgImage={data.featured_images.full.url}
+  bgImage={data?.featured_images?.full?.url || ""}
 >
   <div
-    class="text-xl space-y-3 mt-10 lg:mt-0"
+    class="text-lg sm:text-xl space-y-3 mt-2 sm:mt-10 lg:mt-0 line-clamp-5 md:line-clamp-none"
     set:html={data.content.rendered}
   />
 
+  <ProductCategories />
   <ProductsPosts />
 </PostLayout>

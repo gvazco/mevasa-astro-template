@@ -7,15 +7,24 @@ interface Props {
   post: Product;
 }
 const { post } = Astro.props;
-console.log(post);
+// console.log(post);
 ---
 
-<article class="overflow-hidden bg-white py-8 sm:py-16">
-  <div id="anchoPantalla"></div>
+<article
+  class="overflow-hidden bg-white py-6 mt-2 border-b last-of-type:border-0 border-zinc-300"
+>
   <div class="mx-auto max-w-7xl">
     <div
-      class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2"
+      class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 md:gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2"
     >
+      <Picture
+        src={post?.featured_images?.medium_large?.url || ""}
+        alt={post?.title.rendered}
+        width={post?.featured_images?.medium_large?.width || 600}
+        height={post?.featured_images?.medium_large?.height || 600}
+        formats={["avif", "webp"]}
+        class="w-full lg:w-[30rem] h-full lg:h-[30rem] object-cover rounded-2xl"
+      />
       <div class="lg:pr-8 lg:pt-4">
         <div class="lg:max-w-lg">
           <PostMeta date={post.date} />
@@ -63,7 +72,7 @@ console.log(post);
             post.acf.navigation ? (
               <a
                 href={post.acf.navigation}
-                class="rounded-md bg-coffee-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-coffee-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coffee-600"
+                class="rounded-md bg-coffee-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-coffee-500 focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-coffee-600"
               >
                 Ver en {post.acf.button_label}
               </a>
@@ -77,15 +86,6 @@ console.log(post);
           </a>
         </div>
       </div>
-
-      <Picture
-        src={post.featured_images.medium_large.url}
-        alt={post.title.rendered}
-        width={post.featured_images.medium_large.width}
-        height={post.featured_images.medium_large.height}
-        formats={["avif", "webp"]}
-        class="w-full lg:w-[48rem] h-full object-cover rounded-2xl"
-      />
     </div>
   </div>
 </article>
