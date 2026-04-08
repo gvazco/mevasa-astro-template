@@ -1,12 +1,12 @@
-# Usa una imagen base de Node.js compatible con la versión requerida (>=18.20.8)
-FROM node:18-alpine AS base
+# Usa una imagen base de Node.js compatible con la versión requerida (>=22.12.0)
+FROM node:22-alpine AS base
 
 # Establece el directorio de trabajo
 WORKDIR /app
 
 # Variables de entorno para el build
-ENV API_URL=https://api-coffeeshop.core-hub-plex.cloud/wp-json/wp/v2
-ENV HOME_URL=https://api-coffeeshop.core-hub-plex.cloud
+ENV API_URL=https://api-mevasa.mevasa-comercializadora.com/wp-json/wp/v2
+ENV HOME_URL=https://api-mevasa.mevasa-comercializadora.com
 
 # Copia los archivos de dependencias
 COPY package*.json ./
@@ -21,7 +21,7 @@ COPY . .
 RUN npm run build
 
 # Etapa de producción: imagen más ligera
-FROM node:18-alpine AS production
+FROM node:22-alpine AS production
 
 # Establece el directorio de trabajo
 WORKDIR /app
