@@ -1,4 +1,4 @@
-import { A as AstroError, I as InvalidComponentArgs, N as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, b as isRemoteAllowed, R as RemoteImageNotAllowed, w as joinPaths, E as ExpectedImage, i as isRemotePath, L as LocalImageUsedWrongly, M as MissingImageDimension, U as UnsupportedImageFormat, x as IncompatibleDescriptorOptions, y as UnsupportedImageConversion, z as InvalidImageService, B as ExpectedImageOptions, C as ExpectedNotESMImage, D as ImageMissingAlt, m as maybeRenderHead, h as addAttribute, s as spreadAttributes, f as renderTemplate, G as FontFamilyNotFound, u as unescapeHTML } from './server_WgpN2iMj.mjs';
+import { A as AstroError, I as InvalidComponentArgs, N as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, b as isRemoteAllowed, R as RemoteImageNotAllowed, w as joinPaths, E as ExpectedImage, i as isRemotePath, L as LocalImageUsedWrongly, M as MissingImageDimension, U as UnsupportedImageFormat, x as IncompatibleDescriptorOptions, y as UnsupportedImageConversion, z as InvalidImageService, B as ExpectedImageOptions, C as ExpectedNotESMImage, D as ImageMissingAlt, m as maybeRenderHead, h as addAttribute, s as spreadAttributes, f as renderTemplate, G as FontFamilyNotFound, u as unescapeHTML } from './server_DVot2_ii.mjs';
 import * as mime from 'mrmime';
 import 'clsx';
 import 'piccolore';
@@ -1490,7 +1490,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './sharp_B8dIAUz6.mjs'
+      './sharp_CRAcrA2W.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -1689,7 +1689,7 @@ const $$Image = createComponent(async ($$result, $$props, $$slots) => {
   }
   const { class: className, ...attributes } = { ...additionalAttributes, ...image.attributes };
   return renderTemplate`${maybeRenderHead()}<img${addAttribute(image.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}>`;
-}, "C:/Users/Gustavo Vazco/source/repos/mevasa-astro-template/node_modules/astro/components/Image.astro", void 0);
+}, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/node_modules/astro/components/Image.astro", void 0);
 
 const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
@@ -1766,7 +1766,7 @@ const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
     const srcsetAttribute = props.densities || !props.densities && !props.widths && !useResponsive ? `${image.src}${image.srcSet.values.length > 0 ? ", " + image.srcSet.attribute : ""}` : image.srcSet.attribute;
     return renderTemplate`<source${addAttribute(srcsetAttribute, "srcset")}${addAttribute(mime.lookup(image.options.format ?? image.src) ?? `image/${image.options.format}`, "type")}${spreadAttributes(sourceAdditionalAttributes)}>`;
   })}  <img${addAttribute(fallbackImage.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}> </picture>`;
-}, "C:/Users/Gustavo Vazco/source/repos/mevasa-astro-template/node_modules/astro/components/Picture.astro", void 0);
+}, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/node_modules/astro/components/Picture.astro", void 0);
 
 const componentDataByCssVariable = new Map([]);
 
@@ -1818,10 +1818,10 @@ const $$Font = createComponent(($$result, $$props, $$slots) => {
   }
   const filteredPreloadData = filterPreloads(data.preloads, preload);
   return renderTemplate`<style>${unescapeHTML(data.css)}</style>${filteredPreloadData?.map(({ url, type }) => renderTemplate`<link rel="preload"${addAttribute(url, "href")} as="font"${addAttribute(`font/${type}`, "type")} crossorigin>`)}`;
-}, "C:/Users/Gustavo Vazco/source/repos/mevasa-astro-template/node_modules/astro/components/Font.astro", void 0);
+}, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/node_modules/astro/components/Font.astro", void 0);
 
 const assetQueryParams = undefined;
-					const imageConfig = {"endpoint":{"entrypoint":"astro/assets/endpoint/node","route":"/_image"},"service":{"entrypoint":"astro/assets/services/sharp","config":{}},"domains":["coffeeshop.local","coffe-shop.core-hub-plex.cloud"],"remotePatterns":[],"responsiveStyles":false};
+					const imageConfig = {"endpoint":{"entrypoint":"astro/assets/endpoint/node","route":"/_image"},"service":{"entrypoint":"astro/assets/services/sharp","config":{}},"domains":["coffeeshop.local","api-mevasa.mevasa-comercializadora.com"],"remotePatterns":[],"responsiveStyles":false};
 					Object.defineProperty(imageConfig, 'assetQueryParams', {
 						value: assetQueryParams,
 						enumerable: false,
@@ -1833,8 +1833,8 @@ const assetQueryParams = undefined;
 					// in the Lambda bundle, which would bloat the bundle with images.
 					// To prevent this, we mark the URL construction as pure,
 					// so that it's tree-shaken away for all platforms that don't need it.
-					const outDir = /* #__PURE__ */ new URL("file:///C:/Users/Gustavo%20Vazco/source/repos/mevasa-astro-template/dist/client/");
-					const serverDir = /* #__PURE__ */ new URL("file:///C:/Users/Gustavo%20Vazco/source/repos/mevasa-astro-template/dist/server/");
+					const outDir = /* #__PURE__ */ new URL("file:///home/gustavovazco/Documentos/GitHub/mevasa-astro-template/dist/client/");
+					const serverDir = /* #__PURE__ */ new URL("file:///home/gustavovazco/Documentos/GitHub/mevasa-astro-template/dist/server/");
 							const getImage = async (options) => await getImage$1(options, imageConfig);
 
 export { $$Picture as $, baseService as b, createComponent as c, getConfiguredImageService as g, imageConfig as i, outDir as o, parseQuality as p, serverDir as s };

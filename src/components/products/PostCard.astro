@@ -29,7 +29,7 @@ const { post } = Astro.props;
         <div class="lg:max-w-lg">
           <PostMeta date={post.date} />
 
-          <h3 class="text-coffee-900 font-black text-2xl sm:text-4xl uppercase">
+          <h3 class="text-gray-900 font-black text-2xl sm:text-4xl uppercase">
             <a href={`/catalogo/${post.slug}`}>
               {post.title.rendered}
             </a>
@@ -51,7 +51,7 @@ const { post } = Astro.props;
                 focusable="false"
                 data-prefix="fas"
                 data-icon="circle-info"
-                class="svg-inline--fa fa-circle-info absolute left-1 top-1 h-5 w-5 text-coffee-900"
+                class="svg-inline--fa fa-circle-info absolute left-1 top-1 h-5 w-5 text-yellow-900"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
@@ -72,7 +72,7 @@ const { post } = Astro.props;
             post.acf.navigation ? (
               <a
                 href={post.acf.navigation}
-                class="rounded-md bg-coffee-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-coffee-500 focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-coffee-600"
+                class="rounded-md bg-yellow-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-yellow-600 focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-yellow-700"
               >
                 Ver en {post.acf.button_label}
               </a>

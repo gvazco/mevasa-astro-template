@@ -1,9 +1,9 @@
 ---
-import { ProductCategoriesSchema } from "@/types";
-const catUrl = `${import.meta.env.API_URL}/product_categories?per_page=20`;
+import { CategoriesSchema } from "@/types";
+const catUrl = `${import.meta.env.API_URL}/categories?per_page=20`;
 const catResponse = await fetch(catUrl);
 const catJson = await catResponse.json();
-const catData = ProductCategoriesSchema.parse(catJson);
+const catData = CategoriesSchema.parse(catJson);
 
 // console.log(catData);
 ---
@@ -13,7 +13,7 @@ const catData = ProductCategoriesSchema.parse(catJson);
     catData.map((cat) => (
       <a
         href={`/catalogo/categoria/${cat.slug}`}
-        class="py-1 px-5 bg-yellow-700 hover:bg-yellow-600 text-sm text-white text-semibold mr-2 rounded mt-1"
+        class="py-1 px-5 bg-coffee-600 hover:bg-coffee-500 text-sm text-white mr-2 rounded mt-1"
       >
         {cat.name}
       </a>

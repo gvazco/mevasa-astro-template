@@ -12,7 +12,7 @@ const res = await fetch(`${import.meta.env.API_URL}/posts?slug=${slug}`);
 const json = await res.json();
 const post = PostSchema.safeParse(json[0]);
 if (!post.success) return Astro.redirect("/404");
-const { title, featured_images, date, content, category_details } = post.data;
+const { title, featured_images, date, content, category_details, acf } = post.data;
 ---
 
 <PostLayout
@@ -28,14 +28,27 @@ const { title, featured_images, date, content, category_details } = post.data;
       ))
     }
 
-    <Picture
+    <h3>{acf.location}</h3>
+
+    {acf.video_url && acf.video_enabled ? (
+      <div class="aspect-video">
+        <iframe
+          src={acf?.video_url}
+          title={title.rendered}
+          allowfullscreen
+          class="w-full h-full"
+        />
+      </div>
+    ) : ( <Picture
       src={featured_images?.full?.url || ""}
       alt={title.rendered}
       width={featured_images?.full?.width || 600}
       height={featured_images?.full?.height || 600}
       formats={["avif", "webp"]}
       class="w-full"
-    />
+    /> )}
+
+    
 
     <div set:html={content.rendered} class="text-lg space-y-3 mt-5" />
   </article>

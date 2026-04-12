@@ -24,7 +24,7 @@ export const BaseWPSchema = z.object({
   }),
   featured_images: featureImagesSchema.optional(),
   acf: z.object({
-    subtitle: z.string(),
+    subtitle: z.string().optional(),
   }),
 });
 
@@ -63,11 +63,14 @@ export const CategoriesSlugSchema = z.array(
   }),
 );
 
-const CategoriesSchema = z.array(CategorySchema);
+export const CategoriesSchema = z.array(CategorySchema);
 
-export const PostSchema = BaseWPSchema.omit({
-  acf: true,
-}).extend({
+export const PostSchema = BaseWPSchema.extend({
+  acf: z.object({
+    video_url: z.string(),
+    video_enabled: z.boolean(),
+    location: z.string()
+  }),
   date: z.string(),
   category_details: CategoriesSchema,
 });
@@ -135,6 +138,7 @@ const ProductCategorySchema = z.object({
   id: z.number(),
   name: z.string(),
   slug: z.string(),
+  count: z.number(),
 });
 
 export const ProductCategoriesSchema = z.array(ProductCategorySchema);

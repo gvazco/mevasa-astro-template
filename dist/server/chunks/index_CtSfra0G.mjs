@@ -1,6 +1,6 @@
-import { c as createComponent } from './_astro_assets_COujHo6r.mjs';
+import { c as createComponent } from './_astro_assets_5Kk0fXWl.mjs';
 import 'piccolore';
-import { k as createRenderInstruction, h as addAttribute, f as renderTemplate, l as generateCspDigest, s as spreadAttributes, u as unescapeHTML, m as maybeRenderHead, j as renderComponent, n as renderSlot, o as renderHead, q as renderTransition, t as fade, v as slide } from './server_WgpN2iMj.mjs';
+import { k as createRenderInstruction, h as addAttribute, f as renderTemplate, l as generateCspDigest, s as spreadAttributes, u as unescapeHTML, m as maybeRenderHead, j as renderComponent, n as renderSlot, o as renderHead, q as renderTransition, t as fade, v as slide } from './server_DVot2_ii.mjs';
 import 'clsx';
 import { z } from 'zod';
 
@@ -22,8 +22,8 @@ const $$ClientRouter = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
   Astro2.self = $$ClientRouter;
   const { fallback = "animate" } = Astro2.props;
-  return renderTemplate`<meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback"${addAttribute(fallback, "content")}>${renderScript($$result, "C:/Users/Gustavo Vazco/source/repos/mevasa-astro-template/node_modules/astro/components/ClientRouter.astro?astro&type=script&index=0&lang.ts")}`;
-}, "C:/Users/Gustavo Vazco/source/repos/mevasa-astro-template/node_modules/astro/components/ClientRouter.astro", void 0);
+  return renderTemplate`<meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback"${addAttribute(fallback, "content")}>${renderScript($$result, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/node_modules/astro/components/ClientRouter.astro?astro&type=script&index=0&lang.ts")}`;
+}, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/node_modules/astro/components/ClientRouter.astro", void 0);
 
 function createSvgComponent({ meta, attributes, children, styles }) {
   const hasStyles = styles.length > 0;
@@ -75,37 +75,37 @@ const $$MainNav = createComponent(($$result, $$props, $$slots) => {
     if (href === "/") return currentPath === "/";
     return currentPath.startsWith(href);
   };
-  return renderTemplate`${maybeRenderHead()}<nav class="flex flex-col items-center md:flex-row gap-3"> ${navigation.map((item) => renderTemplate`<a${addAttribute(item.href, "href")}${addAttribute(`${isActive(item.href) ? "text-coffee-400" : "text-white hover:text-coffee-400"} uppercase text-lg font-bold`, "class")}> ${item.name} </a>`)} </nav>`;
-}, "C:/Users/Gustavo Vazco/source/repos/mevasa-astro-template/src/components/ui/MainNav.astro", void 0);
+  return renderTemplate`${maybeRenderHead()}<nav class="flex flex-col items-center md:flex-row gap-3"> ${navigation.map((item) => renderTemplate`<a${addAttribute(item.href, "href")}${addAttribute(`${isActive(item.href) ? "text-yellow-400" : "text-white hover:text-yellow-400"} uppercase text-lg font-bold`, "class")}> ${item.name} </a>`)} </nav>`;
+}, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/src/components/ui/MainNav.astro", void 0);
 
 const $$PostHeader = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
   Astro2.self = $$PostHeader;
   const { bgImage, subtitle } = Astro2.props;
   return renderTemplate`${maybeRenderHead()}<header class="min-h-36 relative md:pb-36"> <div class="absolute inset-0 bg-center bg-cover bg-image"${addAttribute({ backgroundImage: `url(${bgImage})` }, "style")}></div> <div class="absolute inset-0 bg-black/60"></div> <div class="relative max-w-7xl mx-auto py-10 md:py-14 px-4 md:px-0"> <div class="flex flex-col md:flex-row md:justify-between"> <a href="/" class="mx-auto md:mx-0"> ${renderComponent($$result, "Logo", Logo, { "class": "w-32 md:w-72" })} </a> <div id="nav-menu" class="md:flex md:flex-row md:gap-3"> ${renderComponent($$result, "MainNav", $$MainNav, {})} </div> </div> <h1 class="text-2xl md:text-4xl font-black uppercase text-white text-center mt-8 md:mt-20 lg:mt-32 after:coffee-icon"> ${subtitle} </h1> </div> </header>`;
-}, "C:/Users/Gustavo Vazco/source/repos/mevasa-astro-template/src/components/ui/PostHeader.astro", void 0);
+}, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/src/components/ui/PostHeader.astro", void 0);
 
 const $$FooterBox = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
   Astro2.self = $$FooterBox;
   const { heading } = Astro2.props;
-  return renderTemplate`${maybeRenderHead()}<div class="text-center space-y-3"> <h3 class="text-coffee-400 text-2xl font-black uppercase">${heading}</h3> <div class="space-y-3 text-xl text-white"> ${renderSlot($$result, $$slots["default"])} </div> </div>`;
-}, "C:/Users/Gustavo Vazco/source/repos/mevasa-astro-template/src/components/ui/FooterBox.astro", void 0);
+  return renderTemplate`${maybeRenderHead()}<div class="text-center space-y-3"> <h3 class="text-yellow-400 text-2xl font-black uppercase">${heading}</h3> <div class="space-y-3 text-xl text-white"> ${renderSlot($$result, $$slots["default"])} </div> </div>`;
+}, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/src/components/ui/FooterBox.astro", void 0);
 
 const $$Footer = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${maybeRenderHead()}<footer class="bg-coffee-900 pt-20"> <div class="max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-3 gap-5"> ${renderComponent($$result, "FooterBox", $$FooterBox, { "heading": "Dirección Fiscal" }, { "default": ($$result2) => renderTemplate` <p>Ricardo Flores Magon #103</p> <p>Col. Izcalli Chamapa. Naucalpan, EdoMex.</p> ` })} ${renderComponent($$result, "FooterBox", $$FooterBox, { "heading": "Contactanos" }, { "default": ($$result2) => renderTemplate` <p>Tel. 55 2353-9837</p> <a href="tel+552353 9837" class="text-coffee-400 hover:text-coffee-300">
+  return renderTemplate`${maybeRenderHead()}<footer class="bg-gray-900 pt-20"> <div class="max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-3 gap-5"> ${renderComponent($$result, "FooterBox", $$FooterBox, { "heading": "Dirección Fiscal" }, { "default": ($$result2) => renderTemplate` <p>Ricardo Flores Magon #103</p> <p>Col. Izcalli Chamapa. Naucalpan, EdoMex.</p> ` })} ${renderComponent($$result, "FooterBox", $$FooterBox, { "heading": "Contactanos" }, { "default": ($$result2) => renderTemplate` <p>Tel. 55 2353-9837</p> <a href="tel+552353 9837" class="text-gray-400 hover:text-gray-300">
 Llama para obtener atención personalizada
 </a> ` })} ${renderComponent($$result, "FooterBox", $$FooterBox, { "heading": "Horario" }, { "default": ($$result2) => renderTemplate` <p>Lun - Vie: 09:00 - 18:00</p> <p>Sab: 09:00 - 15:00</p> <p>Dom: Cerrado</p> ` })} </div> <p class="py-10 text-center text-white text-sm">
 Todos los derechos reservados. Mevasa Comercializadora by Techos y
     Mantenimientos. &copy; ${(/* @__PURE__ */ new Date()).getFullYear()} </p> </footer>`;
-}, "C:/Users/Gustavo Vazco/source/repos/mevasa-astro-template/src/components/ui/Footer.astro", void 0);
+}, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/src/components/ui/Footer.astro", void 0);
 
 const $$PostLayout = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
   Astro2.self = $$PostLayout;
   const { title, subtitle, bgImage } = Astro2.props;
   return renderTemplate`<html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${title} - Mevasa Comercializadora</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">${renderComponent($$result, "ClientRouter", $$ClientRouter, {})}${renderHead()}</head> <body class="bg-coffee-100"> ${renderComponent($$result, "PostHeader", $$PostHeader, { "subtitle": subtitle, "bgImage": bgImage, "data-astro-transition-scope": renderTransition($$result, "c27rpouy", fade({ duration: ".5s" })) })} <main class="bg-white p-5 sm:p-8 md:p-10 max-w-7xl mx-auto lg:-mt-20 relative"> <div${addAttribute(renderTransition($$result, "cw7q37ok", slide({ duration: "1s" })), "data-astro-transition-scope")}> ${renderSlot($$result, $$slots["default"])} </div> </main> ${renderSlot($$result, $$slots["after-main-content"])} ${renderComponent($$result, "Footer", $$Footer, {})} </body></html>`;
-}, "C:/Users/Gustavo Vazco/source/repos/mevasa-astro-template/src/layouts/PostLayout.astro", "self");
+}, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/src/layouts/PostLayout.astro", "self");
 
 const imageSchema = z.object({
   url: z.string(),
@@ -129,7 +129,7 @@ const BaseWPSchema = z.object({
   }),
   featured_images: featureImagesSchema.optional(),
   acf: z.object({
-    subtitle: z.string()
+    subtitle: z.string().optional()
   })
 });
 const gallerySchema = z.object({
@@ -160,9 +160,12 @@ z.array(
   })
 );
 const CategoriesSchema = z.array(CategorySchema);
-const PostSchema = BaseWPSchema.omit({
-  acf: true
-}).extend({
+const PostSchema = BaseWPSchema.extend({
+  acf: z.object({
+    video_url: z.string(),
+    video_enabled: z.boolean(),
+    location: z.string()
+  }),
   date: z.string(),
   category_details: CategoriesSchema
 });
@@ -218,7 +221,8 @@ BaseWPSchema.extend({
 const ProductCategorySchema = z.object({
   id: z.number(),
   name: z.string(),
-  slug: z.string()
+  slug: z.string(),
+  count: z.number()
 });
 z.array(ProductCategorySchema);
 
