@@ -16,7 +16,7 @@ console.log(data);
   bgImage={data?.featured_images?.full?.url || ""}
 >
   <div
-    class="text-xl space-y-3 mt-10 lg:mt-0"
+    class="text-lg sm:text-xl space-y-3 mt-2 sm:mt-10 lg:mt-0 line-clamp-5 md:line-clamp-none"
     set:html={data.content.rendered}
   />
   <PostCategories />
