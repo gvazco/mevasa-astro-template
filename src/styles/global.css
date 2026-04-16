@@ -51,7 +51,9 @@
 }
 
 @utility bg-menu-image {
-  background-image: url("../assets/menu_artwork.svg");
+  background-image: url("../assets/esmaltes-pintura.webp");
+  background-size: cover;
+  background-position: center;
 }
 
 /* Estilizado del elemento audio y sus controles */
