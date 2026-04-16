@@ -139,6 +139,7 @@ const ProductCategorySchema = z.object({
   name: z.string(),
   slug: z.string(),
   count: z.number(),
+  description: z.string(),
 });
 
 export const ProductCategoriesSchema = z.array(ProductCategorySchema);

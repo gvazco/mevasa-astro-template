@@ -1,6 +1,6 @@
-import { c as createComponent } from './_astro_assets_5Kk0fXWl.mjs';
+import { c as createComponent } from './_astro_assets_Su7dDN9I.mjs';
 import 'piccolore';
-import { k as createRenderInstruction, h as addAttribute, f as renderTemplate, l as generateCspDigest, s as spreadAttributes, u as unescapeHTML, m as maybeRenderHead, j as renderComponent, n as renderSlot, o as renderHead, q as renderTransition, t as fade, v as slide } from './server_DVot2_ii.mjs';
+import { k as createRenderInstruction, h as addAttribute, f as renderTemplate, l as generateCspDigest, s as spreadAttributes, u as unescapeHTML, m as maybeRenderHead, j as renderComponent, n as renderSlot, o as renderHead, q as renderTransition, t as fade, v as slide } from './server_DlvMXfOQ.mjs';
 import 'clsx';
 import { z } from 'zod';
 
@@ -222,7 +222,8 @@ const ProductCategorySchema = z.object({
   id: z.number(),
   name: z.string(),
   slug: z.string(),
-  count: z.number()
+  count: z.number(),
+  description: z.string()
 });
 z.array(ProductCategorySchema);
 

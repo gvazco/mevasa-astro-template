@@ -1,87 +1,89 @@
 ---
-import { ProductCategoriesSchema } from "@/types";
-import Aislantes from "@/assets/aislantes.webp";
-import { categoryDescriptions, categoryImages } from "@/helpers/categoryMeta.astro";
+import { ProductCategoriesSchema } from '@/types';
+import Aislantes from '@/assets/aislantes.webp';
+import {
+  categoryDescriptions,
+  categoryImages,
+} from '@/helpers/categoryMeta.astro';
 
 const catUrl = `${import.meta.env.API_URL}/product_categories?per_page=20`;
 const catResponse = await fetch(catUrl);
 const catJson = await catResponse.json();
 const catData = ProductCategoriesSchema.parse(catJson);
-
+console.log(catData);
 ---
 
 <section class="bg-white py-10">
-
-  <div class="container mx-auto max-w-7xl h-full flex w-full justify-center items-center">
-
-    <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
-
-        <!-- card  -->
-        {
+  <div
+    class="container mx-auto max-w-7xl h-full flex w-full justify-center items-center"
+  >
+    <div
+      class="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+    >
+      <!-- card  -->
+      {
         catData.map((cat) => (
-            
-          <div
-            class="relative bg-white border rounded-lg shadow-md hover:bg-gray-800 bg-gray-900 dark:bg-gray-900 transform transition duration-500 hover:scale-105">
+          <div class="relative bg-white border rounded-lg shadow-md hover:bg-gray-800 bg-gray-900 dark:bg-gray-900 transform transition duration-500 hover:scale-105">
             <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
-                {cat.count}
+              {cat.count}
             </div>
             <a href={`/catalogo/categoria/${cat.slug}`}>
               <div class="p-2 flex justify-center">
-                    <img class="rounded-md"
-                    src={categoryImages[cat.slug as keyof typeof categoryImages]}
-                    loading="lazy" />
-                
+                <img
+                  class="rounded-md"
+                  src={categoryImages[cat.slug as keyof typeof categoryImages]}
+                  loading="lazy"
+                />
               </div>
             </a>
             <div class="px-4 pb-3">
-                <div>
-                    <a href={`/catalogo/categoria/${cat.slug}`}>
-                        <h5
-                            class="text-lg font-extrabold uppercase leading-tight tracking-tight text-yellow-500">
-                            {cat.name}
-                        </h5>
-                    </a>
+              <div>
+                <a href={`/catalogo/categoria/${cat.slug}`}>
+                  <h5 class="text-lg font-extrabold uppercase leading-tight tracking-tight text-yellow-500">
+                    {cat.name}
+                  </h5>
+                </a>
 
-                    <p class="antialiased font-medium text-gray-400 dark:text-gray-400 text-gray-700 text-balance text-sm line-clamp-3">
-                        {categoryDescriptions[cat.slug as keyof typeof categoryDescriptions]}
-                    </p>
-                </div>
+                <p class="antialiased font-medium text-gray-400 dark:text-gray-400 text-gray-700 text-balance text-sm line-clamp-3">
+                  {
+                    categoryDescriptions[
+                      cat.slug as keyof typeof categoryDescriptions
+                    ]
+                  }
+                </p>
+              </div>
             </div>
-
           </div>
         ))
       }
 
       <div
-            class="relative bg-white border rounded-lg shadow-md hover:bg-gray-800 bg-gray-900 dark:bg-gray-900 transform transition duration-500 hover:scale-105">
-            
-            <a href={`/catalogo`}>
-              <div class="p-2 flex justify-center">
-                    <img class="rounded-md"
-                    src={Aislantes.src}
-                    loading="lazy" />
-                
-              </div>
-            </a>
-            <div class="px-4 pb-3">
-                <div>
-                    <a href={`/catalogo`}>
-                        <h5
-                            class="text-lg font-extrabold uppercase leading-tight tracking-tight text-yellow-500">
-                            Todos los productos
-                        </h5>
-                    </a>
-
-                    <p class="antialiased font-medium text-gray-400 dark:text-gray-400 text-gray-700 text-balance text-sm line-clamp-3">
-                        Ver todos los productos disponibles en nuestro catálogo, sin importar la categoría.
-                    </p>
-                </div>
-            </div>
-
+        class="relative bg-white border rounded-lg shadow-md hover:bg-gray-800 bg-gray-900 dark:bg-gray-900 transform transition duration-500 hover:scale-105"
+      >
+        <a href={`/catalogo`}>
+          <div class="p-2 flex justify-center">
+            <img class="rounded-md" src={Aislantes.src} loading="lazy" />
           </div>
+        </a>
+        <div class="px-4 pb-3">
+          <div>
+            <a href={`/catalogo`}>
+              <h5
+                class="text-lg font-extrabold uppercase leading-tight tracking-tight text-yellow-500"
+              >
+                Todos los productos
+              </h5>
+            </a>
 
+            <p
+              class="antialiased font-medium text-gray-400 dark:text-gray-400 text-gray-700 text-balance text-sm line-clamp-3"
+            >
+              Ver todos los productos disponibles en nuestro catálogo, sin
+              importar la categoría.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
-  
 </section>

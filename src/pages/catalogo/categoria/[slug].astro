@@ -1,10 +1,10 @@
 ---
-import { CategoriesSlugSchema, CategorySchema, ProductsSchema } from "@/types";
-import PostLayout from "@/layouts/PostLayout.astro";
-import PostCard from "@/components/products/PostCard.astro";
+import { CategoriesSlugSchema, CategorySchema, ProductsSchema } from '@/types';
+import PostLayout from '@/layouts/PostLayout.astro';
+import PostCard from '@/components/products/PostCard.astro';
 export async function getStaticPaths() {
   const res = await fetch(
-    `${import.meta.env.API_URL}/product_categories?_fields=slug,name`,
+    `${import.meta.env.API_URL}/product_categories?_fields=slug,name&per_page=100`
   );
   const json = await res.json();
   const categories = CategoriesSlugSchema.parse(json);
@@ -28,7 +28,7 @@ const posts = ProductsSchema.parse(postsJson);
 <PostLayout
   title={`Productos en la categoría: ${category.name}`}
   subtitle={`Productos en la categoría: ${category.name}`}
-  bgImage={posts[0]?.featured_images?.full?.url || ""}
+  bgImage={posts[0]?.featured_images?.full?.url || ''}
 >
   {posts.map((post) => <PostCard post={post} />)}
 </PostLayout>
