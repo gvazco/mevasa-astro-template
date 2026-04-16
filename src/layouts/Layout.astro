@@ -1,8 +1,8 @@
 ---
-import { ClientRouter, fade, slide } from "astro:transitions";
-import "@/styles/global.css";
-import Header from "@/components/ui/Header.astro";
-import Footer from "@/components/ui/Footer.astro";
+import { ClientRouter, fade, slide } from 'astro:transitions';
+import '@/styles/global.css';
+import Header from '@/components/ui/Header.astro';
+import Footer from '@/components/ui/Footer.astro';
 
 interface Props {
   title: string;
@@ -33,13 +33,13 @@ const { title, subtitle, bgImage } = Astro.props;
     <Header
       title={title}
       bgImage={bgImage}
-      transition:animate={fade({ duration: ".5s" })}
+      transition:animate={fade({ duration: '.5s' })}
     />
 
     <main class="bg-white p-8 md:p-10 max-w-7xl mx-auto lg:-mt-20 relative">
-      <div transition:animate={slide({ duration: "1s" })}>
+      <div transition:animate={slide({ duration: '1s' })}>
         <h2
-          class="text-gray-900 font-black text-center text-2xl md:text-4xl pb-8 md:px-8 uppercase"
+          class="text-gray-900 font-black text-center text-2xl md:text-4xl pb-10 md:px-8 uppercase"
         >
           {subtitle}
         </h2>
