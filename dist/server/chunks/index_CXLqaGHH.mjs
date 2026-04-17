@@ -1,6 +1,6 @@
-import { c as createComponent } from './_astro_assets_Bo0_0fzZ.mjs';
+import { c as createComponent } from './_astro_assets_BTEuB4uu.mjs';
 import 'piccolore';
-import { k as createRenderInstruction, h as addAttribute, f as renderTemplate, l as generateCspDigest, s as spreadAttributes, u as unescapeHTML, m as maybeRenderHead, j as renderComponent, n as renderSlot, o as renderHead, q as renderTransition, t as fade, v as slide } from './server_CU5QA61N.mjs';
+import { k as createRenderInstruction, h as addAttribute, f as renderTemplate, l as generateCspDigest, s as spreadAttributes, u as unescapeHTML, m as maybeRenderHead, j as renderComponent, n as renderSlot, o as renderHead, q as renderTransition, t as fade, v as slide } from './server_BOFgiNK7.mjs';
 import 'clsx';
 import { z } from 'zod';
 
@@ -136,6 +136,12 @@ const gallerySchema = z.object({
   large: imageSchema,
   full: imageSchema
 });
+const galleryItemSchema = z.union([z.string(), z.boolean()]).transform((val) => typeof val === "string" ? val : void 0).optional();
+const galleryACFSchema = z.object({
+  gallery_a: galleryItemSchema,
+  gallery_b: galleryItemSchema,
+  gallery_c: galleryItemSchema
+});
 BaseWPSchema.extend({
   gallery: z.array(gallerySchema)
 });
@@ -186,7 +192,8 @@ const ProductSchema = BaseWPSchema.omit({
     shipment: z.string(),
     button_label: z.string(),
     navigation: z.string(),
-    price: z.coerce.number()
+    price: z.coerce.number(),
+    gallery: galleryACFSchema.optional()
   })
 });
 z.array(ProductSchema);
@@ -227,4 +234,4 @@ const ProductCategorySchema = z.object({
 });
 z.array(ProductCategorySchema);
 
-export { $$PostLayout as $, ProductSchema as P, PostSchema as a };
+export { $$PostLayout as $, ProductSchema as P, PostSchema as a, renderScript as r };
