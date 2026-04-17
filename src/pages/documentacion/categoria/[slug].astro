@@ -4,7 +4,7 @@ import Layout from '@/layouts/Layout.astro';
 import PostCard from '@/components/documentacion/PostCard.astro';
 export async function getStaticPaths() {
   const res = await fetch(
-    `${import.meta.env.API_URL}/categories?_fields=slug,name&per_page=100`
+    `${import.meta.env.API_URL}/categories?_fields=slug,name&per_page=20`
   );
   const json = await res.json();
   const categories = CategoriesSlugSchema.parse(json);
@@ -19,7 +19,7 @@ const catRes = await fetch(catUrl);
 const catJson = await catRes.json();
 const category = CategorySchema.parse(catJson[0]);
 
-const postsUrl = `${import.meta.env.API_URL}/posts?categories=${category.id}`;
+const postsUrl = `${import.meta.env.API_URL}/posts?categories=${category.id}&per_page=50`;
 const postsRes = await fetch(postsUrl);
 const postsJson = await postsRes.json();
 const posts = PostsSchema.parse(postsJson);

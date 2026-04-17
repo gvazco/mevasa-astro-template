@@ -50,8 +50,14 @@
   font-family: "PT Sans", sans-serif;
 }
 
-@utility bg-menu-image {
-  background-image: url("../assets/esmaltes-pintura.webp");
+@utility bg-cta1-image {
+  background-image: url("../assets/lamina-ondulada.webp");
+  background-size: cover;
+  background-position: center;
+}
+
+@utility bg-cta2-image {
+  background-image: url("../assets/fijacion.webp");
   background-size: cover;
   background-position: center;
 }
