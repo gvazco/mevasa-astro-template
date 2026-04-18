@@ -1,6 +1,6 @@
-import { c as createComponent } from './_astro_assets_BTEuB4uu.mjs';
+import { c as createComponent } from './_astro_assets_Bn-B-1rR.mjs';
 import 'piccolore';
-import { k as createRenderInstruction, h as addAttribute, f as renderTemplate, l as generateCspDigest, s as spreadAttributes, u as unescapeHTML, m as maybeRenderHead, j as renderComponent, n as renderSlot, o as renderHead, q as renderTransition, t as fade, v as slide } from './server_BOFgiNK7.mjs';
+import { k as createRenderInstruction, h as addAttribute, f as renderTemplate, l as generateCspDigest, s as spreadAttributes, u as unescapeHTML, m as maybeRenderHead, j as renderComponent, n as renderSlot, o as renderHead, q as renderTransition, t as fade, v as slide } from './server_Bh7d8AMu.mjs';
 import 'clsx';
 import { z } from 'zod';
 
@@ -81,8 +81,8 @@ const $$MainNav = createComponent(($$result, $$props, $$slots) => {
 const $$PostHeader = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
   Astro2.self = $$PostHeader;
-  const { bgImage, subtitle } = Astro2.props;
-  return renderTemplate`${maybeRenderHead()}<header class="min-h-36 relative md:pb-36"> <div class="absolute inset-0 bg-center bg-cover bg-image"${addAttribute({ backgroundImage: `url(${bgImage})` }, "style")}></div> <div class="absolute inset-0 bg-black/60"></div> <div class="relative max-w-7xl mx-auto py-10 md:py-14 px-4 md:px-0"> <div class="flex flex-col md:flex-row md:justify-between"> <a href="/" class="mx-auto md:mx-0"> ${renderComponent($$result, "Logo", Logo, { "class": "w-32 md:w-72" })} </a> <div id="nav-menu" class="md:flex md:flex-row md:gap-3"> ${renderComponent($$result, "MainNav", $$MainNav, {})} </div> </div> <h1 class="text-2xl md:text-4xl font-black uppercase text-white text-center mt-8 md:mt-20 lg:mt-32 after:coffee-icon"> ${subtitle} </h1> </div> </header>`;
+  const { bgImage, title } = Astro2.props;
+  return renderTemplate`${maybeRenderHead()}<header class="min-h-36 relative md:pb-36"> <div class="absolute inset-0 bg-center bg-cover bg-image"${addAttribute({ backgroundImage: `url(${bgImage})` }, "style")}></div> <div class="absolute inset-0 bg-black/60"></div> <div class="relative max-w-7xl mx-auto py-10 md:py-14 px-4 md:px-0"> <div class="flex flex-col md:flex-row md:justify-between"> <a href="/" class="mx-auto md:mx-0"> ${renderComponent($$result, "Logo", Logo, { "class": "w-32 md:w-72" })} </a> <div id="nav-menu" class="md:flex md:flex-row md:gap-3"> ${renderComponent($$result, "MainNav", $$MainNav, {})} </div> </div> <h1 class="text-2xl md:text-4xl font-black uppercase text-white text-center mt-8 md:mt-20 lg:mt-32 after:coffee-icon"> ${title} </h1> </div> </header>`;
 }, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/src/components/ui/PostHeader.astro", void 0);
 
 const $$FooterBox = createComponent(($$result, $$props, $$slots) => {
@@ -104,13 +104,13 @@ const $$PostLayout = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
   Astro2.self = $$PostLayout;
   const { title, subtitle, bgImage } = Astro2.props;
-  return renderTemplate`<html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${title} - Mevasa Comercializadora</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">${renderComponent($$result, "ClientRouter", $$ClientRouter, {})}${renderHead()}</head> <body class="bg-coffee-100"> ${renderComponent($$result, "PostHeader", $$PostHeader, { "subtitle": subtitle, "bgImage": bgImage, "data-astro-transition-scope": renderTransition($$result, "c27rpouy", fade({ duration: ".5s" })) })} <main class="bg-white p-5 sm:p-8 md:p-10 max-w-7xl mx-auto lg:-mt-20 relative"> <div${addAttribute(renderTransition($$result, "cw7q37ok", slide({ duration: "1s" })), "data-astro-transition-scope")}> ${renderSlot($$result, $$slots["default"])} </div> </main> ${renderSlot($$result, $$slots["after-main-content"])} ${renderComponent($$result, "Footer", $$Footer, {})} </body></html>`;
+  return renderTemplate`<html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${title} - Mevasa Comercializadora</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">${renderComponent($$result, "ClientRouter", $$ClientRouter, {})}${renderHead()}</head> <body class="bg-coffee-100"> ${renderComponent($$result, "PostHeader", $$PostHeader, { "title": title, "bgImage": bgImage, "data-astro-transition-scope": renderTransition($$result, "c27rpouy", fade({ duration: ".5s" })) })} <main class="bg-white p-5 sm:p-8 md:p-10 max-w-7xl mx-auto lg:-mt-20 relative"> <div${addAttribute(renderTransition($$result, "cw7q37ok", slide({ duration: "1s" })), "data-astro-transition-scope")}> <h2 class="text-gray-900 font-black text-center text-2xl md:text-4xl pb-1 sm:pb-5 md:px-8 uppercase"> ${subtitle} </h2> ${renderSlot($$result, $$slots["default"])} </div> </main> ${renderSlot($$result, $$slots["after-main-content"])} ${renderComponent($$result, "Footer", $$Footer, {})} </body></html>`;
 }, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/src/layouts/PostLayout.astro", "self");
 
 const imageSchema = z.object({
-  url: z.string(),
-  width: z.number(),
-  height: z.number()
+  url: z.string().nullable().optional(),
+  width: z.number().nullable().optional(),
+  height: z.number().nullable().optional()
 });
 const featureImagesSchema = z.object({
   medium: imageSchema,
@@ -135,12 +135,6 @@ const BaseWPSchema = z.object({
 const gallerySchema = z.object({
   large: imageSchema,
   full: imageSchema
-});
-const galleryItemSchema = z.union([z.string(), z.boolean()]).transform((val) => typeof val === "string" ? val : void 0).optional();
-const galleryACFSchema = z.object({
-  gallery_a: galleryItemSchema,
-  gallery_b: galleryItemSchema,
-  gallery_c: galleryItemSchema
 });
 BaseWPSchema.extend({
   gallery: z.array(gallerySchema)
@@ -181,6 +175,7 @@ const ProductSchema = BaseWPSchema.omit({
 }).extend({
   date: z.string(),
   category_details: CategoriesSchema,
+  gallery: z.array(gallerySchema).optional(),
   acf: z.object({
     brand: z.string(),
     summary: z.string(),
@@ -192,8 +187,7 @@ const ProductSchema = BaseWPSchema.omit({
     shipment: z.string(),
     button_label: z.string(),
     navigation: z.string(),
-    price: z.coerce.number(),
-    gallery: galleryACFSchema.optional()
+    price: z.coerce.number()
   })
 });
 z.array(ProductSchema);

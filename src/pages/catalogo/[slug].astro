@@ -14,7 +14,9 @@ const json = await res.json();
 console.log(json);
 const post = ProductSchema.safeParse(json[0]);
 if (!post.success) return Astro.redirect('/404');
-const { title, featured_images, date, category_details, acf } = post.data;
+const { title, featured_images, date, category_details, acf, gallery } =
+  post.data;
+console.log(gallery);
 ---
 
 <PostLayout
@@ -22,7 +24,7 @@ const { title, featured_images, date, category_details, acf } = post.data;
   subtitle={title.rendered}
   bgImage={featured_images?.full?.url || ''}
 >
-  <article class="overflow-hidden bg-white py-2 sm:py-4" id="gallery">
+  <article class="overflow-hidden bg-white py-2 sm:py-4">
     <div
       class="mx-auto bg-gray-100 rounded-lg p-2 sm:p-3 mb-3 flex items-center flex-wrap text-sm text-gray-500"
     >
@@ -74,7 +76,7 @@ const { title, featured_images, date, category_details, acf } = post.data;
     <section>
       <div class="mx-auto max-w-7xl">
         <div
-          class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-2"
+          class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:gap-y-0 lg:mx-0 lg:max-w-none lg:grid-cols-2"
         >
           <div class="lg:pr-8 lg:pt-4">
             <div class="lg:max-w-lg">
@@ -286,69 +288,36 @@ const { title, featured_images, date, category_details, acf } = post.data;
           </div>
 
           <div>
-            <a
-              href={featured_images?.medium_large?.url || ''}
-              data-pswp-width={featured_images?.medium_large?.width || 0}
-              data-pswp-height={featured_images?.medium_large?.height || 0}
-            >
-              <Picture
-                src={featured_images?.medium_large?.url || ''}
-                alt={title.rendered}
-                width={featured_images?.medium_large?.width || 600}
-                height={featured_images?.medium_large?.height || 600}
-                formats={['avif', 'webp']}
-                class="w-full lg:w-[48rem] h-full object-cover rounded-2xl"
-              />
-            </a>
+            <Picture
+              src={featured_images?.medium_large?.url || ''}
+              alt={title.rendered}
+              width={featured_images?.medium_large?.width || 600}
+              height={featured_images?.medium_large?.height || 400}
+              formats={['avif', 'webp']}
+              class="w-full lg:w-[48rem] h-full object-cover rounded-2xl"
+            />
           </div>
 
           <div></div>
 
-          <div>
+          <div id="gallery" class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-5">
             {
-              acf?.gallery?.gallery_a ? (
-                <div class="grid grid-cols-3 gap-5">
+              gallery &&
+                gallery.map((image) => (
                   <a
-                    href={acf?.gallery?.gallery_a}
-                    data-pswp-width={acf?.gallery?.gallery_a ? 600 : 0}
-                    data-pswp-height={acf?.gallery?.gallery_a ? 600 : 0}
+                    href={image.full.url}
+                    data-pswp-width={image.full.width}
+                    data-pswp-height={image.full.height}
                   >
                     <Picture
-                      src={acf?.gallery?.gallery_a || ''}
+                      src={image?.large?.url || ''}
                       alt="Galería de imágenes"
-                      width={acf?.gallery?.gallery_a ? 600 : 0}
-                      height={acf?.gallery?.gallery_a ? 600 : 0}
+                      width={image?.large?.width || 600}
+                      height={image?.large?.height || 400}
                       formats={['avif', 'webp']}
                     />
                   </a>
-                  <a
-                    href={acf?.gallery?.gallery_b}
-                    data-pswp-width={acf?.gallery?.gallery_b ? 600 : 0}
-                    data-pswp-height={acf?.gallery?.gallery_b ? 600 : 0}
-                  >
-                    <Picture
-                      src={acf?.gallery?.gallery_b || ''}
-                      alt="Galería de imágenes"
-                      width={acf?.gallery?.gallery_b ? 600 : 0}
-                      height={acf?.gallery?.gallery_b ? 600 : 0}
-                      formats={['avif', 'webp']}
-                    />
-                  </a>
-                  <a
-                    href={acf?.gallery?.gallery_c}
-                    data-pswp-width={acf?.gallery?.gallery_c ? 600 : 0}
-                    data-pswp-height={acf?.gallery?.gallery_c ? 600 : 0}
-                  >
-                    <Picture
-                      src={acf?.gallery?.gallery_c || ''}
-                      alt="Galería de imágenes"
-                      width={acf?.gallery?.gallery_c ? 600 : 0}
-                      height={acf?.gallery?.gallery_c ? 600 : 0}
-                      formats={['avif', 'webp']}
-                    />
-                  </a>
-                </div>
-              ) : null
+                ))
             }
           </div>
         </div>

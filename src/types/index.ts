@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 const imageSchema = z.object({
-  url: z.string(),
-  width: z.number(),
-  height: z.number(),
+  url: z.string().nullable().optional(),
+  width: z.number().nullable().optional(),
+  height: z.number().nullable().optional(),
 });
 
 const featureImagesSchema = z.object({
@@ -33,15 +33,15 @@ const gallerySchema = z.object({
   full: imageSchema,
 });
 
-const galleryItemSchema = z.union([z.string(), z.boolean()])
-  .transform(val => typeof val === 'string' ? val : undefined)
-  .optional();
+// const galleryItemSchema = z.union([z.string(), z.boolean()])
+//   .transform(val => typeof val === 'string' ? val : undefined)
+//   .optional();
 
-const galleryACFSchema = z.object({
-  gallery_a: galleryItemSchema,
-  gallery_b: galleryItemSchema,
-  gallery_c: galleryItemSchema,
-});
+// const galleryACFSchema = z.object({
+//   gallery_a: galleryItemSchema,
+//   gallery_b: galleryItemSchema,
+//   gallery_c: galleryItemSchema,
+// });
 
 export const GalleryPageSchema = BaseWPSchema.extend({
   gallery: z.array(gallerySchema),
@@ -92,6 +92,7 @@ export const ProductSchema = BaseWPSchema.omit({
 }).extend({
   date: z.string(),
   category_details: CategoriesSchema,
+  gallery: z.array(gallerySchema).optional(),
   acf: z.object({
     brand: z.string(),
     summary: z.string(),
@@ -104,7 +105,6 @@ export const ProductSchema = BaseWPSchema.omit({
     button_label: z.string(),
     navigation: z.string(),
     price: z.coerce.number(),
-    gallery: galleryACFSchema.optional(),
   }),
 });
 

@@ -17,10 +17,10 @@ const { gallery } = Astro.props;
         data-pswp-height={image.full.height}
       >
         <Picture
-          src={image.large.url}
+          src={image?.large?.url || ''}
           alt="Galería de imágenes"
-          width={image.large.width}
-          height={image.large.height}
+          width={image?.large?.width || 600}
+          height={image?.large?.height || 400}
           formats={['avif', 'webp']}
         />
       </a>
