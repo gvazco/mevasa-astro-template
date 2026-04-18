@@ -10,6 +10,8 @@ interface Props {
 }
 
 const { title, bgImage } = Astro.props;
+const description =
+  'Mevasa Comercializadora se especializa en la venta de lámina de acero, accesorios de fijación, montaje, sellos, aislantes, molduras, herramientas y productos ferreteros. Gracias a nuestra experiencia y compromiso, hemos logrado llevar soluciones a clientes en toda la República Mexicana.';
 ---
 
 <!doctype html>
@@ -18,6 +20,10 @@ const { title, bgImage } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} - Mevasa Comercializadora</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/fijacion.webp" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
