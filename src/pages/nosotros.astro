@@ -15,7 +15,7 @@ const data = BaseWPSchema.parse(json[0]);
   subtitle={data?.acf?.subtitle || ''}
   bgImage={data?.featured_images?.full?.url || ''}
 >
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10">
     <div id="gallery">
       {
         data?.featured_images?.medium_large?.url && (
@@ -37,10 +37,7 @@ const data = BaseWPSchema.parse(json[0]);
       <AboutGallery />
     </div>
 
-    <div
-      class="text-xl space-y-3 mt-10 lg:mt-0"
-      set:html={data?.content?.rendered}
-    />
+    <div class="text-xl space-y-3" set:html={data?.content?.rendered} />
   </div>
 </Layout>
 
