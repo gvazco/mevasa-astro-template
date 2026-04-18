@@ -16,11 +16,7 @@ const { title, featured_images, date, content, category_details, acf } =
   post.data;
 ---
 
-<PostLayout
-  title={title.rendered}
-  subtitle={title.rendered}
-  bgImage={featured_images?.full?.url || ''}
->
+<PostLayout title={title.rendered} bgImage={featured_images?.full?.url || ''}>
   <article class="space-y-5 max-w-4xl mx-auto">
     <PostMeta date={date} />
     {
@@ -42,14 +38,16 @@ const { title, featured_images, date, content, category_details, acf } =
           />
         </div>
       ) : (
-        <Picture
-          src={featured_images?.full?.url || ''}
-          alt={title.rendered}
-          width={featured_images?.full?.width || 600}
-          height={featured_images?.full?.height || 600}
-          formats={['avif', 'webp']}
-          class="w-full"
-        />
+        featured_images?.full?.url && (
+          <Picture
+            src={featured_images.full.url}
+            alt={title.rendered}
+            width={featured_images?.full?.width || 600}
+            height={featured_images?.full?.height || 600}
+            formats={['avif', 'webp']}
+            class="w-full"
+          />
+        )
       )
     }
 

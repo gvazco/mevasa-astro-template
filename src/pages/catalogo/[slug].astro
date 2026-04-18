@@ -8,22 +8,15 @@ import PostCategories from '@/components/products/PostCategories.astro';
 export const prerender = false;
 
 const { slug } = Astro.params;
-console.log(slug);
 const res = await fetch(`${import.meta.env.API_URL}/products?slug=${slug}`);
 const json = await res.json();
-console.log(json);
 const post = ProductSchema.safeParse(json[0]);
 if (!post.success) return Astro.redirect('/404');
 const { title, featured_images, date, category_details, acf, gallery } =
   post.data;
-console.log(gallery);
 ---
 
-<PostLayout
-  title={title.rendered}
-  subtitle={title.rendered}
-  bgImage={featured_images?.full?.url || ''}
->
+<PostLayout title={title.rendered} bgImage={featured_images?.full?.url || ''}>
   <article class="overflow-hidden bg-white py-2 sm:py-4">
     <div
       class="mx-auto bg-gray-100 rounded-lg p-2 sm:p-3 mb-3 flex items-center flex-wrap text-sm text-gray-500"
@@ -288,14 +281,18 @@ console.log(gallery);
           </div>
 
           <div>
-            <Picture
-              src={featured_images?.medium_large?.url || ''}
-              alt={title.rendered}
-              width={featured_images?.medium_large?.width || 600}
-              height={featured_images?.medium_large?.height || 400}
-              formats={['avif', 'webp']}
-              class="w-full lg:w-[48rem] h-full object-cover rounded-2xl"
-            />
+            {
+              featured_images?.medium_large?.url && (
+                <Picture
+                  src={featured_images.medium_large.url}
+                  alt={title.rendered}
+                  width={featured_images?.medium_large?.width || 600}
+                  height={featured_images?.medium_large?.height || 400}
+                  formats={['avif', 'webp']}
+                  class="w-full lg:w-[48rem] h-full object-cover rounded-2xl"
+                />
+              )
+            }
           </div>
 
           <div></div>
@@ -303,21 +300,24 @@ console.log(gallery);
           <div id="gallery" class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-5">
             {
               gallery &&
-                gallery.map((image) => (
-                  <a
-                    href={image.full.url}
-                    data-pswp-width={image.full.width}
-                    data-pswp-height={image.full.height}
-                  >
-                    <Picture
-                      src={image?.large?.url || ''}
-                      alt="Galería de imágenes"
-                      width={image?.large?.width || 600}
-                      height={image?.large?.height || 400}
-                      formats={['avif', 'webp']}
-                    />
-                  </a>
-                ))
+                gallery.map(
+                  (image) =>
+                    image?.large?.url && (
+                      <a
+                        href={image.full.url}
+                        data-pswp-width={image.full.width}
+                        data-pswp-height={image.full.height}
+                      >
+                        <Picture
+                          src={image.large.url}
+                          alt="Galería de imágenes"
+                          width={image?.large?.width || 600}
+                          height={image?.large?.height || 400}
+                          formats={['avif', 'webp']}
+                        />
+                      </a>
+                    )
+                )
             }
           </div>
         </div>

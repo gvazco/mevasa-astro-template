@@ -1,13 +1,13 @@
 ---
-import { Picture } from "astro:assets";
-import type { Post } from "@/types";
-import PostMeta from "./PostMeta.astro";
-import PostCategories from "./PostCategories.astro";
+import { Picture } from 'astro:assets';
+import type { Post } from '@/types';
+import PostMeta from './PostMeta.astro';
+import PostCategories from './PostCategories.astro';
 interface Props {
   post: Post;
 }
 const { post } = Astro.props;
-console.log(post);
+// console.log(post);
 ---
 
 <article
@@ -30,12 +30,16 @@ console.log(post);
     <div set:html={post.content.rendered} class="line-clamp-2 text-lg" />
   </div>
 
-  <Picture
-    src={post?.featured_images?.medium_large?.url || ""}
-    alt={post?.title.rendered}
-    width={post?.featured_images?.medium_large?.width || 600}
-    height={post?.featured_images?.medium_large?.height || 600}
-    formats={["avif", "webp"]}
-    class="w-full lg:w-96 h-64 object-cover rounded-2xl"
-  />
+  {
+    post?.featured_images?.medium_large?.url && (
+      <Picture
+        src={post.featured_images.medium_large.url}
+        alt={post?.title.rendered}
+        width={post?.featured_images?.medium_large?.width || 600}
+        height={post?.featured_images?.medium_large?.height || 600}
+        formats={['avif', 'webp']}
+        class="w-full lg:w-96 h-64 object-cover rounded-2xl"
+      />
+    )
+  }
 </article>

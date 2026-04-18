@@ -1,8 +1,8 @@
 ---
-import { Picture } from "astro:assets";
-import type { Product } from "@/types";
-import PostMeta from "./PostMeta.astro";
-import PostCategories from "./PostCategories.astro";
+import { Picture } from 'astro:assets';
+import type { Product } from '@/types';
+import PostMeta from './PostMeta.astro';
+import PostCategories from './PostCategories.astro';
 interface Props {
   post: Product;
 }
@@ -17,14 +17,18 @@ const { post } = Astro.props;
     <div
       class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 md:gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2"
     >
-      <Picture
-        src={post?.featured_images?.medium_large?.url || ""}
-        alt={post?.title.rendered}
-        width={post?.featured_images?.medium_large?.width || 600}
-        height={post?.featured_images?.medium_large?.height || 600}
-        formats={["avif", "webp"]}
-        class="w-full lg:w-[30rem] h-full lg:h-[30rem] object-cover rounded-2xl"
-      />
+      {
+        post?.featured_images?.medium_large?.url && (
+          <Picture
+            src={post.featured_images.medium_large.url}
+            alt={post?.title.rendered}
+            width={post?.featured_images?.medium_large?.width || 600}
+            height={post?.featured_images?.medium_large?.height || 600}
+            formats={['avif', 'webp']}
+            class="w-full lg:w-[30rem] h-full lg:h-[30rem] object-cover rounded-2xl"
+          />
+        )
+      }
       <div class="lg:pr-8 lg:pt-4">
         <div class="lg:max-w-lg">
           <PostMeta date={post.date} />

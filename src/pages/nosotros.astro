@@ -17,19 +17,23 @@ const data = BaseWPSchema.parse(json[0]);
 >
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
     <div id="gallery">
-      <a
-        href={data?.featured_images?.full.url}
-        data-pswp-width={data?.featured_images?.full.width}
-        data-pswp-height={data?.featured_images?.full.height}
-      >
-        <Picture
-          src={data?.featured_images?.medium_large?.url || ''}
-          alt={data?.title.rendered}
-          width={data?.featured_images?.medium_large?.width || 600}
-          height={data?.featured_images?.medium_large?.height || 600}
-          formats={['avif', 'webp']}
-        />
-      </a>
+      {
+        data?.featured_images?.medium_large?.url && (
+          <a
+            href={data?.featured_images?.full.url}
+            data-pswp-width={data?.featured_images?.full.width}
+            data-pswp-height={data?.featured_images?.full.height}
+          >
+            <Picture
+              src={data.featured_images.medium_large.url}
+              alt={data?.title.rendered}
+              width={data?.featured_images?.medium_large?.width || 600}
+              height={data?.featured_images?.medium_large?.height || 600}
+              formats={['avif', 'webp']}
+            />
+          </a>
+        )
+      }
       <AboutGallery />
     </div>
 

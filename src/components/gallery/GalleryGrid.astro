@@ -10,21 +10,24 @@ const { gallery } = Astro.props;
 
 <div id="gallery" class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-5">
   {
-    gallery.map((image) => (
-      <a
-        href={image.full.url}
-        data-pswp-width={image.full.width}
-        data-pswp-height={image.full.height}
-      >
-        <Picture
-          src={image?.large?.url || ''}
-          alt="Galería de imágenes"
-          width={image?.large?.width || 600}
-          height={image?.large?.height || 400}
-          formats={['avif', 'webp']}
-        />
-      </a>
-    ))
+    gallery.map(
+      (image) =>
+        image?.large?.url && (
+          <a
+            href={image.full.url}
+            data-pswp-width={image.full.width}
+            data-pswp-height={image.full.height}
+          >
+            <Picture
+              src={image.large.url}
+              alt="Galería de imágenes"
+              width={image?.large?.width || 600}
+              height={image?.large?.height || 400}
+              formats={['avif', 'webp']}
+            />
+          </a>
+        )
+    )
   }
 </div>
 
