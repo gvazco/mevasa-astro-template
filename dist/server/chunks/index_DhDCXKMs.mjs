@@ -1,6 +1,6 @@
-import { c as createComponent } from './_astro_assets_Bn-B-1rR.mjs';
+import { c as createComponent } from './_astro_assets_CZ6EOkpI.mjs';
 import 'piccolore';
-import { k as createRenderInstruction, h as addAttribute, f as renderTemplate, l as generateCspDigest, s as spreadAttributes, u as unescapeHTML, m as maybeRenderHead, j as renderComponent, n as renderSlot, o as renderHead, q as renderTransition, t as fade, v as slide } from './server_Bh7d8AMu.mjs';
+import { k as createRenderInstruction, h as addAttribute, f as renderTemplate, l as generateCspDigest, s as spreadAttributes, u as unescapeHTML, m as maybeRenderHead, j as renderComponent, n as renderSlot, o as renderHead, q as renderTransition, t as fade, v as slide } from './server_B4XSHh2c.mjs';
 import 'clsx';
 import { z } from 'zod';
 
@@ -103,8 +103,8 @@ Todos los derechos reservados. Mevasa Comercializadora by Techos y
 const $$PostLayout = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
   Astro2.self = $$PostLayout;
-  const { title, subtitle, bgImage } = Astro2.props;
-  return renderTemplate`<html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${title} - Mevasa Comercializadora</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">${renderComponent($$result, "ClientRouter", $$ClientRouter, {})}${renderHead()}</head> <body class="bg-coffee-100"> ${renderComponent($$result, "PostHeader", $$PostHeader, { "title": title, "bgImage": bgImage, "data-astro-transition-scope": renderTransition($$result, "c27rpouy", fade({ duration: ".5s" })) })} <main class="bg-white p-5 sm:p-8 md:p-10 max-w-7xl mx-auto lg:-mt-20 relative"> <div${addAttribute(renderTransition($$result, "cw7q37ok", slide({ duration: "1s" })), "data-astro-transition-scope")}> <h2 class="text-gray-900 font-black text-center text-2xl md:text-4xl pb-1 sm:pb-5 md:px-8 uppercase"> ${subtitle} </h2> ${renderSlot($$result, $$slots["default"])} </div> </main> ${renderSlot($$result, $$slots["after-main-content"])} ${renderComponent($$result, "Footer", $$Footer, {})} </body></html>`;
+  const { title, bgImage } = Astro2.props;
+  return renderTemplate`<html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${title} - Mevasa Comercializadora</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">${renderComponent($$result, "ClientRouter", $$ClientRouter, {})}${renderHead()}</head> <body class="bg-coffee-100"> ${renderComponent($$result, "PostHeader", $$PostHeader, { "title": title, "bgImage": bgImage, "data-astro-transition-scope": renderTransition($$result, "c27rpouy", fade({ duration: ".5s" })) })} <main class="bg-white p-5 sm:p-8 md:p-10 max-w-7xl mx-auto lg:-mt-20 relative"> <div${addAttribute(renderTransition($$result, "cw7q37ok", slide({ duration: "1s" })), "data-astro-transition-scope")}> ${renderSlot($$result, $$slots["default"])} </div> </main> ${renderSlot($$result, $$slots["after-main-content"])} ${renderComponent($$result, "Footer", $$Footer, {})} </body></html>`;
 }, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/src/layouts/PostLayout.astro", "self");
 
 const imageSchema = z.object({

@@ -1,5 +1,5 @@
 ---
-import PostLayout from '@/layouts/PostLayout.astro';
+import Layout from '@/layouts/Layout.astro';
 import BlogPosts from '@/components/documentacion/BlogPosts.astro';
 import PostCategories from '@/components/ui/PostCategories.astro';
 import { BaseWPSchema } from '@/types';
@@ -10,7 +10,7 @@ const data = BaseWPSchema.parse(json[0]);
 console.log(data);
 ---
 
-<PostLayout
+<Layout
   title="Documentación"
   subtitle={data?.acf?.subtitle || 'Nuestra documentación'}
   bgImage={data?.featured_images?.full?.url || ''}
@@ -21,4 +21,4 @@ console.log(data);
   />
   <PostCategories />
   <BlogPosts />
-</PostLayout>
+</Layout>

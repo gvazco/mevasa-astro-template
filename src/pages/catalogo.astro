@@ -1,5 +1,5 @@
 ---
-import PostLayout from '@/layouts/PostLayout.astro';
+import Layout from '@/layouts/Layout.astro';
 import ProductsPosts from '@/components/products/ProductsPosts.astro';
 import ProductCategories from '@/components/ui/ProductCategories.astro';
 import { BaseWPSchema } from '@/types';
@@ -10,7 +10,7 @@ const data = BaseWPSchema.parse(json[0]);
 console.log(data);
 ---
 
-<PostLayout
+<Layout
   title="Catálogo"
   subtitle={data?.acf?.subtitle || 'Nuestro catálogo de productos'}
   bgImage={data?.featured_images?.full?.url || ''}
@@ -22,4 +22,4 @@ console.log(data);
 
   <ProductCategories />
   <ProductsPosts />
-</PostLayout>
+</Layout>

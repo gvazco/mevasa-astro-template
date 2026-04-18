@@ -6,11 +6,10 @@ import Footer from '@/components/ui/Footer.astro';
 
 interface Props {
   title: string;
-  subtitle: string;
   bgImage: string;
 }
 
-const { title, subtitle, bgImage } = Astro.props;
+const { title, bgImage } = Astro.props;
 ---
 
 <!doctype html>
@@ -40,11 +39,6 @@ const { title, subtitle, bgImage } = Astro.props;
       class="bg-white p-5 sm:p-8 md:p-10 max-w-7xl mx-auto lg:-mt-20 relative"
     >
       <div transition:animate={slide({ duration: '1s' })}>
-        <h2
-          class="text-gray-900 font-black text-center text-2xl md:text-4xl pb-1 sm:pb-5 md:px-8 uppercase"
-        >
-          {subtitle}
-        </h2>
         <slot />
       </div>
     </main>
