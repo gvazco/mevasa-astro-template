@@ -1,0 +1,21 @@
+---
+import { DirectusCategoriesResponseSchema } from '@/types';
+const catUrl = `${import.meta.env.API_ITEMS}/articles_tags`;
+const catResponse = await fetch(catUrl);
+const catJson = await catResponse.json();
+const catData = DirectusCategoriesResponseSchema.parse(catJson);
+const { data: tagData } = catData;
+---
+
+<div class="my-3 flex flex-wrap gap-2 justify-center">
+  {
+    tagData.map((tag) => (
+      <a
+        href={`/documentacion/etiqueta/${tag.slug}`}
+        class="py-1 px-5 bg-yellow-700 hover:bg-yellow-600 text-sm text-white text-semibold mr-2 rounded mt-1"
+      >
+        {tag.name}
+      </a>
+    ))
+  }
+</div>

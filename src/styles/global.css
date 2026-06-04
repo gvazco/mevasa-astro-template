@@ -122,6 +122,14 @@ audio {
   padding: 1rem;
 }
 
+.aspect-video{
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
 .input-label {
   @apply text-coffee-900 uppercase font-bold text-lg;
 }

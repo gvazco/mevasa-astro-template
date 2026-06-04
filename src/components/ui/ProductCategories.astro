@@ -1,9 +1,10 @@
 ---
-import { ProductCategoriesSchema } from '@/types';
-const catUrl = `${import.meta.env.API_URL}/product_categories?per_page=20`;
+import { DirectusCategoriesResponseSchema } from '@/types';
+const catUrl = `${import.meta.env.API_ITEMS}//products_categories`;
 const catResponse = await fetch(catUrl);
 const catJson = await catResponse.json();
-const catData = ProductCategoriesSchema.parse(catJson);
+const newCatData = DirectusCategoriesResponseSchema.parse(catJson);
+const { data: catData } = newCatData;
 
 // console.log(catData);
 ---

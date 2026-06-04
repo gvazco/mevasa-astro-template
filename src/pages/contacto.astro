@@ -1,25 +1,30 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import { ContactPageSchema } from "@/types";
-import LocationMap from "@/components/contact/LocationMap.astro";
-import ContactForm from "@/components/contact/ContactForm.astro";
-const url = `${import.meta.env.API_URL}/pages?slug=contacto`;
+import Layout from '@/layouts/Layout.astro';
+import { DirectusContactPageResponseSchema } from '@/types';
+import LocationMap from '@/components/contact/LocationMap.astro';
+import ContactForm from '@/components/contact/ContactForm.astro';
+const url = `${import.meta.env.API_ITEMS}/pages?filter[slug][_eq]=contacto`;
 const response = await fetch(url);
 const json = await response.json();
-const data = ContactPageSchema.parse(json[0]);
+const data = DirectusContactPageResponseSchema.parse(json);
+
+const { data: contactData } = data;
+const location = contactData[0]?.location?.location;
+
+// console.log('Contact page data:', contactData);
 ---
 
 <Layout
-  title="Contacto"
-  subtitle={data.acf.subtitle}
-  bgImage={data?.featured_images?.full?.url || ""}
+  title={contactData[0]?.title}
+  subtitle={contactData[0]?.subtitle || ''}
+  bgImage={`${import.meta.env.PUBLIC_ASSETS}/${contactData[0]?.cover_image}`}
 >
   <div
     class="text-xl space-y-3 mt-10 lg:mt-0"
-    set:html={data?.content?.rendered}
+    set:html={contactData[0]?.content}
   />
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5">
     <ContactForm />
-    <LocationMap location={data.acf.location} />
+    {location && <LocationMap location={location} />}
   </div>
 </Layout>

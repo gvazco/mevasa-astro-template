@@ -1,29 +1,27 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-// import CategoryIconLabel from "@/components/ui/CategoryIconLabel.astro";
-import bg from '@/assets/bg_home.jpg';
 import SalesGrid from '@/components/ui/SalesGrid.astro';
 import CtaAction from '@/components/ui/CtaAction.astro';
+
+import { DirectusPageIndexResponseSchema } from '@/types';
+const newUrl = `${import.meta.env.API_ITEMS}/pages?filter[slug][_eq]=inicio&fields=*,left_category.*,center_category.*,right_category.*`;
+const newResponse = await fetch(newUrl);
+const newJson = await newResponse.json();
+const newData = DirectusPageIndexResponseSchema.parse(newJson);
+const { data: pageIndex } = newData;
+const publicAssetsUrl = import.meta.env.PUBLIC_ASSETS;
 ---
 
 <Layout
   title="Especialistas en lámina de acero"
-  subtitle="Acero, Ferretería y Materiales de Construcción"
-  bgImage={bg.src}
+  subtitle={pageIndex[0]?.subtitle ||
+    'Tu proveedor confiable de lámina de acero y accesorios'}
+  bgImage={`${publicAssetsUrl}/${pageIndex[0]?.cover_image}`}
 >
-  <p class="text-center text-lg mt-1 font-medium text-gray-700 text-balance">
-    Mevasa Comercializadora se especializa en la venta de lámina de acero,
-    accesorios de fijación, montaje, sellos, aislantes, molduras, herramientas y
-    productos ferreteros. Gracias a nuestra experiencia y compromiso, hemos
-    logrado llevar soluciones a clientes en toda la República Mexicana.
-  </p>
-
-  <!-- <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-10">
-    <CategoryIconLabel icon="icon_coffee.svg" text="Café" />
-    <CategoryIconLabel icon="icon_dessert.svg" text="Postres" />
-    <CategoryIconLabel icon="icon_tea.svg" text="Té" />
-  </div> -->
-
+  <div
+    class="text-center text-lg mt-1 font-medium text-gray-700 text-balance"
+    set:html={pageIndex[0]?.content}
+  />
   <SalesGrid />
   <CtaAction />
 </Layout>

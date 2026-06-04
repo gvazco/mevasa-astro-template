@@ -1,11 +1,11 @@
 ---
-import { PostsSchema } from '@/types';
+import { DirectusArticlesResponseSchema } from '@/types';
 import PostCard from './PostCard.astro';
-const url = `${import.meta.env.API_URL}/posts`;
-const res = await fetch(url);
-const json = await res.json();
-const data = PostsSchema.parse(json);
-// console.log(data);
+const newUrl = `${import.meta.env.API_ITEMS}/articles?fields=title,slug,cover_image,date_created,excerpt,status,category.*,tags.*,author.*`;
+const newRes = await fetch(newUrl);
+const newJson = await newRes.json();
+const newData = DirectusArticlesResponseSchema.parse(newJson);
+const { data: posts } = newData;
 ---
 
-{data.map((post) => <PostCard post={post} />)}
+{posts.map((post) => <PostCard post={post} />)}

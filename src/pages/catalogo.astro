@@ -2,22 +2,24 @@
 import Layout from '@/layouts/Layout.astro';
 import ProductsPosts from '@/components/products/ProductsPosts.astro';
 import ProductCategories from '@/components/ui/ProductCategories.astro';
-import { BaseWPSchema } from '@/types';
-const url = `${import.meta.env.API_URL}/pages?slug=catalogo`;
-const response = await fetch(url);
-const json = await response.json();
-const data = BaseWPSchema.parse(json[0]);
-// console.log(data);
+import { DirectusPageResponseSchema } from '@/types';
+const newUrl = `${import.meta.env.API_ITEMS}/pages?filter[slug][_eq]=catalogo`;
+const newResponse = await fetch(newUrl);
+const newJson = await newResponse.json();
+const newData = DirectusPageResponseSchema.parse(newJson);
+const { data: pageData } = newData;
 ---
 
 <Layout
-  title="Catálogo"
-  subtitle={data?.acf?.subtitle || 'Nuestro catálogo de productos'}
-  bgImage={data?.featured_images?.full?.url || ''}
+  title={pageData[0]?.title}
+  subtitle={pageData[0]?.subtitle || 'Nuestro catálogo de productos'}
+  bgImage={pageData[0]?.cover_image
+    ? `${import.meta.env.PUBLIC_ASSETS}/${pageData[0].cover_image}`
+    : ''}
 >
   <div
     class="text-lg sm:text-xl space-y-3 mt-2 sm:mt-10 lg:mt-0 line-clamp-5 md:line-clamp-none"
-    set:html={data.content.rendered}
+    set:html={pageData[0]?.content}
   />
 
   <ProductCategories />

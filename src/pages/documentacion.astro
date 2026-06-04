@@ -2,22 +2,22 @@
 import Layout from '@/layouts/Layout.astro';
 import BlogPosts from '@/components/documentacion/BlogPosts.astro';
 import PostCategories from '@/components/ui/PostCategories.astro';
-import { BaseWPSchema } from '@/types';
-const url = `${import.meta.env.API_URL}/pages?slug=documentacion`;
+import { DirectusPageResponseSchema } from '@/types';
+const url = `${import.meta.env.API_ITEMS}/pages?filter[slug][_eq]=documentacion`;
 const response = await fetch(url);
 const json = await response.json();
-const data = BaseWPSchema.parse(json[0]);
-// console.log(data);
+const data = DirectusPageResponseSchema.parse(json);
+const { data: pageData } = data;
 ---
 
 <Layout
-  title="Documentación"
-  subtitle={data?.acf?.subtitle || 'Nuestra documentación'}
-  bgImage={data?.featured_images?.full?.url || ''}
+  title={pageData[0]?.title}
+  subtitle={pageData[0]?.subtitle || ''}
+  bgImage={`${import.meta.env.PUBLIC_ASSETS}/${pageData[0]?.cover_image}`}
 >
   <div
     class="text-lg sm:text-xl space-y-3 mt-2 sm:mt-10 lg:mt-0 line-clamp-5 md:line-clamp-none"
-    set:html={data.content.rendered}
+    set:html={pageData[0]?.content}
   />
   <PostCategories />
   <BlogPosts />

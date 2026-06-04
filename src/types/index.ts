@@ -1,163 +1,210 @@
 import { z } from "zod";
 
-const imageSchema = z.object({
-  url: z.string().nullable().optional(),
-  width: z.number().nullable().optional(),
-  height: z.number().nullable().optional(),
-});
+/* -------------------------------------------------------------------------- */
+/*                                DIRECTUS CMS                                */
+/* -------------------------------------------------------------------------- */
 
-const featureImagesSchema = z.object({
-  medium: imageSchema,
-  medium_large: imageSchema,
-  large: imageSchema,
-  full: imageSchema,
-});
-
-export const BaseWPSchema = z.object({
+/* ------------------------------- BASE_SCHEMA ------------------------------ */
+export const DirectusBaseSchema = z.object({
   id: z.number(),
+  title: z.string(), 
+  subtitle: z.string().optional(),
   slug: z.string(),
-  title: z.object({
-    rendered: z.string(),
-  }),
-  content: z.object({
-    rendered: z.string(),
-  }),
-  featured_images: featureImagesSchema.optional(),
-  acf: z.object({
-    subtitle: z.string().optional(),
-  }),
+  content: z.string().nullable().optional(),
+  cover_image: z.string(),
+  status: z.enum(["draft", "published", "archived"]).optional(),
 });
 
-const gallerySchema = z.object({
-  large: imageSchema,
-  full: imageSchema,
-});
-
-// const galleryItemSchema = z.union([z.string(), z.boolean()])
-//   .transform(val => typeof val === 'string' ? val : undefined)
-//   .optional();
-
-// const galleryACFSchema = z.object({
-//   gallery_a: galleryItemSchema,
-//   gallery_b: galleryItemSchema,
-//   gallery_c: galleryItemSchema,
-// });
-
-export const GalleryPageSchema = BaseWPSchema.extend({
-  gallery: z.array(gallerySchema),
-});
-
-const processSchema = z.object({
-  title: z.string(),
-  description: z.string(),
-  image: z.string(),
-});
-
-export const ProcessPageSchema = BaseWPSchema.extend({
-  acf: z
-    .object({
-      subtitle: z.string(),
-    })
-    .catchall(processSchema),
-});
-
-export const CategorySchema = z.object({
+/* ----------------------------- CATEGORY SCHEMA ---------------------------- */
+export const DirectusCategorySchema = z.object({
   id: z.number(),
+  status: z.string(),
   name: z.string(),
+  cover_image: z.string().nullable().optional(),
   slug: z.string(),
+  description: z.string().nullable(),
 });
 
-export const CategoriesSlugSchema = z.array(
-  CategorySchema.pick({
+export const DirectusCategoriesSlugSchema = z.array(
+  DirectusCategorySchema.pick({
     slug: true,
   }),
 );
 
-export const CategoriesSchema = z.array(CategorySchema);
+export const DirectusCategoriesSchema = z.array(DirectusCategorySchema);
 
-export const PostSchema = BaseWPSchema.extend({
-  acf: z.object({
-    video_url: z.string(),
-    video_enabled: z.boolean(),
-    location: z.string()
+export const DirectusCategoriesResponseSchema = z.object({
+  data: DirectusCategoriesSchema,
+});
+/* -------------------------------------------------------------------------- */
+
+/* ----------------------------- AUTHORS SCHEMA ----------------------------- */
+export const DirectusAuthorSchema = z.object({
+  id: z.number(),
+  status: z.string(),
+  name: z.string(),
+  email: z.string(),
+  bio: z.string(),
+  avatar: z.string().nullable().optional(),
+  social_links: z.object({
+    facebook: z.string(),
+    instagram: z.string(),
   }),
-  date: z.string(),
-  category_details: CategoriesSchema,
+  slug: z.string(),
+}); 
+
+export const DirectusAuthorsSlugSchema = z.array(
+  DirectusAuthorSchema.pick({
+    slug: true,
+  }),
+);
+
+export const DirectusAuthorsSchema = z.array(DirectusAuthorSchema);
+/* -------------------------------------------------------------------------- */
+
+/* ------------------------- DirectusPageIndexSchema ------------------------ */
+
+export const DirectusPageIndexSchema = DirectusBaseSchema.extend({
+  left_title: z.string().nullable().optional(),
+  center_title: z.string().nullable().optional(),
+  right_title: z.string().nullable().optional(),
+  left_slug: z.string().nullable().optional(),
+  center_slug: z.string().nullable().optional(),
+  right_slug: z.string().nullable().optional(),
+  left_category: DirectusCategorySchema,
+  center_category: DirectusCategorySchema,
+  right_category: DirectusCategorySchema,
+  left_image: z.string().nullable().optional(),
+  center_image: z.string().nullable().optional(),
+  right_image: z.string().nullable().optional(),
 });
 
-export const PostsSchema = z.array(PostSchema);
+export const DirectusPageIndexArraySchema = z.array(DirectusPageIndexSchema);
 
-export const ProductSchema = BaseWPSchema.omit({
+export const DirectusPageIndexResponseSchema = z.object({
+  data: DirectusPageIndexArraySchema,
+});
+
+export const DirectusPageArraySchema = z.array(DirectusBaseSchema);
+
+export const DirectusPageResponseSchema = z.object({
+  data: DirectusPageArraySchema,
+});
+/* -------------------------------------------------------------------------- */
+
+/* ------------------------ DIRECTUS ARTICLES SCHEMA ------------------------ */
+
+export const DirectusArticlesSchema = DirectusBaseSchema.omit({
+  id: true,
+  subtitle: true,
+}).extend({
+  date_created: z.string().datetime(),
+  excerpt: z.string().nullable().optional(),
+  category: DirectusCategorySchema,
+  tags: DirectusCategorySchema,
+  author: DirectusAuthorSchema,
+  video_enabled: z.boolean().optional(),
+  cover_video: z.string().nullable().optional(),
+});
+
+export const DirectusArticlesArraySchema = z.array(DirectusArticlesSchema);
+
+export const DirectusArticlesResponseSchema = z.object({
+  data: DirectusArticlesArraySchema,
+});
+
+export const DirectusArticlesCategoryArraySchema = z.array(DirectusCategorySchema);
+
+export const DirectusArticlesCategoryResponseSchema = z.object({
+  data: DirectusArticlesCategoryArraySchema,
+});
+
+/* ------------------------ DIRECTUS PRODUCTS SCHEMA ------------------------ */
+export const DirectusProductsSchema = DirectusBaseSchema.omit({
+  id: true,
   content: true,
+  subtitle: true,
 }).extend({
-  date: z.string(),
-  category_details: CategoriesSchema,
-  gallery: z.array(gallerySchema).optional(),
-  acf: z.object({
-    brand: z.string(),
-    summary: z.string(),
-    description: z.string(),
-    long: z.string(),
-    width: z.string(),
-    thickness: z.string(),
-    caliber: z.string(),
-    shipment: z.string(),
-    button_label: z.string(),
-    navigation: z.string(),
-    price: z.coerce.number(),
-  }),
+  date_created: z.string().datetime(),
+  date_updated: z.string().datetime().nullable().optional(),
+  excerpt: z.string().nullable().optional(),
+  product_category: DirectusCategorySchema,
+  navigation_options: z.boolean().optional(),
+  button_label: z.string().nullable().optional(),
+  button_navigation: z.string().nullable().optional(),
+  brand: z.string().nullable().optional(),
+  long: z.string().nullable().optional(),
+  width: z.string().nullable().optional(),
+  thickness: z.string().nullable().optional(),
+  caliber: z.string().nullable().optional(),
+  shipment: z.string().nullable().optional(),
+  gallery_options: z.boolean().optional(),
+  product_gallery: z.array(z.object({
+    id: z.number(),
+    products_id: z.number(),
+    directus_files_id: z.string(),
+  })).optional(),
 });
 
-export const ProductsSchema = z.array(ProductSchema);
+export const DirectusProductsArraySchema = z.array(DirectusProductsSchema);
 
-const MenuItemSchema = BaseWPSchema.pick({
-  title: true,
-  slug: true,
-  featured_images: true,
-}).extend({
-  link: z.string(),
-  acf: z.object({
-    description: z.string(),
-    price: z.coerce.number(),
-  }),
+export const DirectusProductsResponseSchema = z.object({
+  data: DirectusProductsArraySchema,
 });
 
-export const MenuItemsSchema = z.array(MenuItemSchema);
+/* -------------------------------------------------------------------------- */
 
-const MarkerSchema = z.object({
+/* ------------------------ DIRECTUS CONTACT SCHEMA ------------------------ */
+const DirectusMarkerSchema = z.object({
   label: z.string(),
+  default_label: z.string(),
   lat: z.number(),
   lng: z.number(),
 });
 
-const LocationSchema = z.object({
+const DirectusLocationSchema = z.object({
   lat: z.number(),
   lng: z.number(),
   zoom: z.number(),
-  markers: z.array(MarkerSchema),
+  markers: z.array(DirectusMarkerSchema),
 });
 
-export const ContactPageSchema = BaseWPSchema.extend({
-  acf: z
-    .object({
-      subtitle: z.string(),
-    })
-    .catchall(LocationSchema),
+export const DirectusContactPageSchema = DirectusBaseSchema.extend({
+  location: z.object({
+    location: DirectusLocationSchema,
+  }).nullable().optional(),
 });
 
-const ProductCategorySchema = z.object({
+export const DirectusContactPageArraySchema = z.array(DirectusContactPageSchema);
+
+export const DirectusContactPageResponseSchema = z.object({
+  data: DirectusContactPageArraySchema,
+});
+
+/* -------------------------------------------------------------------------- */
+
+
+export const DirectusPageGalleryItemSchema = z.object({
   id: z.number(),
-  name: z.string(),
-  slug: z.string(),
-  count: z.number(),
-  description: z.string(),
+  about_gallery_id: z.number(),
+  directus_files_id: z.string(),
 });
 
-export const ProductCategoriesSchema = z.array(ProductCategorySchema);
+export const DirectusPageGallerySchema = z.object({
+  about_gallery: z.array(DirectusPageGalleryItemSchema),
+});
 
-export type Post = z.infer<typeof PostSchema>;
-export type Product = z.infer<typeof ProductSchema>;
-export type MenuItem = z.infer<typeof MenuItemSchema>;
-export type Gallery = z.infer<typeof gallerySchema>;
-export type FeatureImages = z.infer<typeof featureImagesSchema>;
-export type Location = z.infer<typeof LocationSchema>;
+export const DirectusPageGalleryResponseSchema = z.object({
+  data: DirectusPageGallerySchema,
+});
+
+
+/* -------------------------------------------------------------------------- */
+
+export type Post = z.infer<typeof DirectusArticlesSchema>;
+export type Product = z.infer<typeof DirectusProductsSchema>;
+export type Gallery = z.infer<typeof DirectusPageGalleryItemSchema>;
+export type Location = z.infer<typeof DirectusLocationSchema>;
+export type DirectusPageGalleryItem = z.infer<typeof DirectusPageGalleryItemSchema>;
+export type DirectusPageGallery = z.infer<typeof DirectusPageGallerySchema>;
+export type DirectusPageGalleryResponse = z.infer<typeof DirectusPageGalleryResponseSchema>;

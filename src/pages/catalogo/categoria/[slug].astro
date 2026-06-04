@@ -1,36 +1,39 @@
 ---
-import { CategoriesSlugSchema, CategorySchema, ProductsSchema } from '@/types';
+import {
+  DirectusProductsResponseSchema,
+  DirectusCategoriesSlugSchema,
+  DirectusCategorySchema,
+} from '@/types';
 import PostLayout from '@/layouts/PostLayout.astro';
 import PostCard from '@/components/products/PostCard.astro';
 import Ups from '@/components/ui/Ups.astro';
-import bgImage from '@/assets/bg_home.jpg';
+
 export async function getStaticPaths() {
-  const res = await fetch(
-    `${import.meta.env.API_URL}/product_categories?_fields=slug,name&per_page=20`
-  );
+  const res = await fetch(`${import.meta.env.API_ITEMS}/products_categories`);
   const json = await res.json();
-  const categories = CategoriesSlugSchema.parse(json);
+  const categories = DirectusCategoriesSlugSchema.parse(json.data);
   return categories.map((category) => ({
     params: { slug: category.slug },
   }));
 }
 
 const { slug } = Astro.params;
-const catUrl = `${import.meta.env.API_URL}/product_categories?slug=${slug}`;
+const catUrl = `${import.meta.env.API_ITEMS}/products_categories?filter[slug][_eq]=${slug}`;
 const catRes = await fetch(catUrl);
 const catJson = await catRes.json();
-const category = CategorySchema.parse(catJson[0]);
+const category = DirectusCategorySchema.parse(catJson.data[0]);
 
-const postsUrl = `${import.meta.env.API_URL}/products?product_categories=${category.id}&per_page=50`;
+const postsUrl = `${import.meta.env.API_ITEMS}/products?filter[product_category][_eq]=${category.id}&fields=*,product_category.*,product_gallery.*`;
 const postsRes = await fetch(postsUrl);
 const postsJson = await postsRes.json();
-const posts = ProductsSchema.parse(postsJson);
+const posts = DirectusProductsResponseSchema.parse(postsJson);
+const { data: postCategory } = posts;
+// console.log('POSTS:', posts);
 ---
 
 <PostLayout
-  title={`Productos en la categoría: ${category.name}`}
-  subtitle={`Productos en la categoría: ${category.name}`}
-  bgImage={posts[0]?.featured_images?.full?.url || bgImage.src}
+  title={`Productos en la categoría: ${postCategory[0]?.product_category?.name}`}
+  bgImage={`${import.meta.env.PUBLIC_ASSETS}/${postCategory[0]?.cover_image}`}
 >
   <div
     class="mx-auto bg-gray-100 rounded-lg p-2 sm:p-3 mb-3 flex items-center flex-wrap text-sm text-gray-500"
@@ -59,5 +62,11 @@ const posts = ProductsSchema.parse(postsJson);
       </li>
     </ul>
   </div>
-  {posts.length === 0 ? <Ups /> : posts.map((post) => <PostCard post={post} />)}
+  {
+    postCategory.length === 0 ? (
+      <Ups />
+    ) : (
+      postCategory.map((post) => <PostCard product={post} />)
+    )
+  }
 </PostLayout>

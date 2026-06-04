@@ -4,10 +4,10 @@ import type { Product } from '@/types';
 import PostMeta from './PostMeta.astro';
 import PostCategories from './PostCategories.astro';
 interface Props {
-  post: Product;
+  product: Product;
 }
-const { post } = Astro.props;
-// console.log(post);
+const { product } = Astro.props;
+// console.log(product);
 ---
 
 <article
@@ -18,12 +18,12 @@ const { post } = Astro.props;
       class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 md:gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2"
     >
       {
-        post?.featured_images?.medium_large?.url && (
+        product?.cover_image && (
           <Picture
-            src={post.featured_images.medium_large.url}
-            alt={post?.title.rendered}
-            width={post?.featured_images?.medium_large?.width || 600}
-            height={post?.featured_images?.medium_large?.height || 600}
+            src={`${import.meta.env.PUBLIC_ASSETS}/${product?.cover_image}`}
+            alt={product?.title}
+            width={600}
+            height={600}
             formats={['avif', 'webp']}
             class="w-full lg:w-[30rem] h-full lg:h-[30rem] object-cover rounded-2xl"
           />
@@ -31,20 +31,23 @@ const { post } = Astro.props;
       }
       <div class="lg:pr-8 lg:pt-4">
         <div class="lg:max-w-lg">
-          <PostMeta date={post.date} />
+          <PostMeta
+            date={product?.date_updated
+              ? product?.date_updated
+              : product?.date_created}
+          />
 
           <h3 class="text-gray-900 font-black text-2xl sm:text-4xl uppercase">
-            <a href={`/catalogo/${post.slug}`}>
-              {post.title.rendered}
+            <a href={`/catalogo/${product?.slug}`}>
+              {product?.title}
             </a>
           </h3>
 
           <div class="mt-3">
-            {
-              post.category_details.map((cat) => (
-                <PostCategories name={cat.name} slug={cat.slug} />
-              ))
-            }
+            <PostCategories
+              name={product?.product_category?.name}
+              slug={product?.product_category?.slug}
+            />
           </div>
           <dl
             class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none"
@@ -66,25 +69,25 @@ const { post } = Astro.props;
               >
 
               <dd class="line-clamp-2 md:line-clamp-none" id="summary">
-                {post.acf.summary}
+                {product?.excerpt}
               </dd>
             </div>
           </dl>
         </div>
         <div class="mt-10 flex items-center gap-x-6">
           {
-            post.acf.navigation ? (
+            product?.navigation_options ? (
               <a
-                href={post.acf.navigation}
+                href={product?.button_navigation || '#'}
                 class="rounded-md bg-yellow-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-yellow-600 focus-visible:outline  focus-visible:outline-offset-2 focus-visible:outline-yellow-700"
               >
-                Ver en {post.acf.button_label}
+                Ver en {product?.button_label}
               </a>
             ) : null
           }
 
           <a
-            href={`/catalogo/${post.slug}`}
+            href={`/catalogo/${product?.slug}`}
             class="text-sm font-semibold leading-6 text-gray-700"
             >Ver ficha completa <span aria-hidden="true">→</span>
           </a>

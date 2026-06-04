@@ -1,8 +1,8 @@
 ---
 import { Picture } from 'astro:assets';
-import { type Gallery } from '@/types';
+import { type DirectusPageGalleryItem } from '@/types';
 interface Props {
-  gallery: Gallery[];
+  gallery: DirectusPageGalleryItem[];
 }
 
 const { gallery } = Astro.props;
@@ -12,17 +12,17 @@ const { gallery } = Astro.props;
   {
     gallery.map(
       (image) =>
-        image?.large?.url && (
+        image?.id && (
           <a
-            href={image.full.url}
-            data-pswp-width={image.full.width}
-            data-pswp-height={image.full.height}
+            href={`${import.meta.env.PUBLIC_ASSETS}/${image.directus_files_id}`}
+            data-pswp-width={800}
+            data-pswp-height={600}
           >
             <Picture
-              src={image.large.url}
+              src={`${import.meta.env.PUBLIC_ASSETS}/${image.directus_files_id}`}
               alt="Galería de imágenes"
-              width={image?.large?.width || 600}
-              height={image?.large?.height || 400}
+              width={800}
+              height={600}
               formats={['avif', 'webp']}
             />
           </a>

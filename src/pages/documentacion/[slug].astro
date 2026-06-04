@@ -1,49 +1,48 @@
 ---
 import PostLayout from '@/layouts/PostLayout.astro';
 import { Picture } from 'astro:assets';
-import { PostSchema } from '@/types';
+import { DirectusArticlesResponseSchema } from '@/types';
 import PostMeta from '@/components/documentacion/PostMeta.astro';
 import PostCategories from '@/components/documentacion/PostCategories.astro';
+import PostTags from '@/components/documentacion/PostTags.astro';
 
 export const prerender = false;
 
 const { slug } = Astro.params;
-const res = await fetch(`${import.meta.env.API_URL}/posts?slug=${slug}`);
-const json = await res.json();
-const post = PostSchema.safeParse(json[0]);
-if (!post.success) return Astro.redirect('/404');
-const { title, featured_images, date, content, category_details, acf } =
-  post.data;
+const newsRes = await fetch(
+  `${import.meta.env.API_ITEMS}/articles?filter[slug][_eq]=${slug}&fields=*,category.*,tags.*,author.*`
+);
+const newJson = await newsRes.json();
+const newPost = DirectusArticlesResponseSchema.safeParse(newJson);
+if (!newPost.success) return Astro.redirect('/404');
+const { data: post } = newPost.data;
 ---
 
-<PostLayout title={title.rendered} bgImage={featured_images?.full?.url || ''}>
+<PostLayout
+  title={post[0]?.title}
+  bgImage={`${import.meta.env.PUBLIC_ASSETS}/${post[0]?.cover_image}`}
+>
   <article class="space-y-5 max-w-4xl mx-auto">
-    <PostMeta date={date} />
-    {
-      category_details.map((cat) => (
-        <PostCategories name={cat.name} slug={cat.slug} />
-      ))
-    }
+    <PostMeta date={post[0]?.date_created} />
 
-    <h3>{acf.location}</h3>
+    <PostCategories
+      name={post[0]?.category?.name}
+      slug={post[0]?.category?.slug}
+    />
+    <PostTags name={post[0]?.tags?.name} slug={post[0]?.tags?.slug} />
+
+    <!-- <h3>{post[0]?.location}</h3> -->
 
     {
-      acf.video_url && acf.video_enabled ? (
-        <div class="aspect-video">
-          <iframe
-            src={acf?.video_url}
-            title={title.rendered}
-            allowfullscreen
-            class="w-full h-full"
-          />
-        </div>
+      post[0]?.video_enabled ? (
+        <div class="aspect-video" set:html={post[0]?.cover_video} />
       ) : (
-        featured_images?.full?.url && (
+        post[0]?.cover_image && (
           <Picture
-            src={featured_images.full.url}
-            alt={title.rendered}
-            width={featured_images?.full?.width || 600}
-            height={featured_images?.full?.height || 600}
+            src={`${import.meta.env.PUBLIC_ASSETS}/${post[0]?.cover_image}`}
+            alt={post[0]?.title}
+            width={600}
+            height={600}
             formats={['avif', 'webp']}
             class="w-full"
           />
@@ -51,6 +50,6 @@ const { title, featured_images, date, content, category_details, acf } =
       )
     }
 
-    <div set:html={content.rendered} class="text-lg space-y-3 mt-5" />
+    <div set:html={post[0]?.content} class="text-lg space-y-3 mt-5" />
   </article>
 </PostLayout>

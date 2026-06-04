@@ -1,0 +1,42 @@
+---
+import {
+  DirectusArticlesResponseSchema,
+  DirectusCategoriesSlugSchema,
+  DirectusCategorySchema,
+} from '@/types';
+import Layout from '@/layouts/Layout.astro';
+import PostTags from '@/components/ui/PostTags.astro';
+import PostCard from '@/components/documentacion/PostCard.astro';
+
+export async function getStaticPaths() {
+  const res = await fetch(`${import.meta.env.API_ITEMS}/articles_tags`);
+  const json = await res.json();
+  const tags = DirectusCategoriesSlugSchema.parse(json.data);
+  return tags.map((tag) => ({
+    params: { slug: tag.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const tagUrl = `${import.meta.env.API_ITEMS}/articles_tags?filter[slug][_eq]=${slug}`;
+const tagRes = await fetch(tagUrl);
+const tagJson = await tagRes.json();
+const tag = DirectusCategorySchema.parse(tagJson.data[0]);
+
+const postsUrl = `${import.meta.env.API_ITEMS}/articles?filter[tags][_eq]=${tag.id}&fields=*,category.*,tags.*,author.*`;
+const postsRes = await fetch(postsUrl);
+const postsJson = await postsRes.json();
+const posts = DirectusArticlesResponseSchema.parse(postsJson);
+
+const { data: postTag } = posts;
+---
+
+<Layout
+  title={`Posts en la etiqueta: ${postTag[0]?.tags?.name}`}
+  subtitle={`Posts en la etiqueta: ${postTag[0]?.tags?.name}`}
+  bgImage={`${import.meta.env.PUBLIC_ASSETS}/${postTag[0]?.cover_image}`}
+>
+  <PostTags />
+
+  {postTag.map((post) => <PostCard post={post} />)}
+</Layout>

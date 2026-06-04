@@ -1,16 +1,12 @@
 ---
-import { ProductCategoriesSchema } from '@/types';
+import { DirectusCategoriesResponseSchema } from '@/types';
 import Aislantes from '@/assets/aislantes.webp';
-import {
-  categoryDescriptions,
-  categoryImages,
-} from '@/helpers/categoryMeta.astro';
 
-const catUrl = `${import.meta.env.API_URL}/product_categories?per_page=20`;
-const catResponse = await fetch(catUrl);
-const catJson = await catResponse.json();
-const catData = ProductCategoriesSchema.parse(catJson);
-// console.log(catData);
+const newCatUrl = `${import.meta.env.API_ITEMS}/products_categories`;
+const newCatResponse = await fetch(newCatUrl);
+const newCatJson = await newCatResponse.json();
+const newCatData = DirectusCategoriesResponseSchema.parse(newCatJson);
+const { data: categories } = newCatData;
 ---
 
 <section class="bg-white py-10">
@@ -22,16 +18,13 @@ const catData = ProductCategoriesSchema.parse(catJson);
     >
       <!-- card  -->
       {
-        catData.map((cat) => (
+        categories.map((cat) => (
           <div class="relative bg-white border rounded-lg shadow-md hover:bg-gray-800 bg-gray-900 dark:bg-gray-900 transform transition duration-500 hover:scale-105">
-            <div class="absolute top-2 right-2 rounded-full bg-gray-900 text-yellow-400 font-bold w-8 h-8 text-lg text-center align-middle leading-8">
-              {cat.count}
-            </div>
             <a href={`/catalogo/categoria/${cat.slug}`}>
               <div class="p-2 flex justify-center">
                 <img
                   class="rounded-md"
-                  src={categoryImages[cat.slug as keyof typeof categoryImages]}
+                  src={`${import.meta.env.PUBLIC_ASSETS}/${cat.cover_image}`}
                   loading="lazy"
                 />
               </div>
@@ -45,11 +38,7 @@ const catData = ProductCategoriesSchema.parse(catJson);
                 </a>
 
                 <p class="antialiased font-medium text-gray-400 dark:text-gray-400 text-gray-700 text-balance text-sm line-clamp-3">
-                  {
-                    categoryDescriptions[
-                      cat.slug as keyof typeof categoryDescriptions
-                    ]
-                  }
+                  {cat.description}
                 </p>
               </div>
             </div>

@@ -1,18 +1,17 @@
 ---
-import { CategoriesSchema } from '@/types';
-const catUrl = `${import.meta.env.API_URL}/categories?per_page=20`;
-const catResponse = await fetch(catUrl);
-const catJson = await catResponse.json();
-const catData = CategoriesSchema.parse(catJson);
-
-// console.log(catData);
+import { DirectusCategoriesResponseSchema } from '@/types';
+const newCatUrl = `${import.meta.env.API_ITEMS}/articles_categories`;
+const newCatResponse = await fetch(newCatUrl);
+const newCatJson = await newCatResponse.json();
+const newCatData = DirectusCategoriesResponseSchema.parse(newCatJson);
+const { data: catData } = newCatData;
 ---
 
 <div class="my-3 flex flex-wrap gap-2 justify-center">
   {
     catData.map((cat) => (
       <a
-        href={`/catalogo/categoria/${cat.slug}`}
+        href={`/documentacion/categoria/${cat.slug}`}
         class="py-1 px-5 bg-yellow-700 hover:bg-yellow-600 text-sm text-white text-semibold mr-2 rounded mt-1"
       >
         {cat.name}
