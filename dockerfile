@@ -1,44 +1,44 @@
-# Usa una imagen base de Node.js compatible con la versión requerida (>=22.12.0)
-FROM node:22-alpine AS base
+FROM node:22-alpine AS build
 
-# Establece el directorio de trabajo
 WORKDIR /app
 
-# Variables de entorno para el build
-ENV API_URL=https://api-mevasa.mevasa-comercializadora.com/wp-json/wp/v2
-ENV HOME_URL=https://api-mevasa.mevasa-comercializadora.com
+# Build args — Coolify las pasa desde las env vars de la UI
+ARG PUBLIC_ASSETS
+ARG API_ITEMS
+ARG HOME_URL
 
-# Copia los archivos de dependencias
+# PUBLIC_ASSETS se inlinea en el bundle en build-time
+ENV PUBLIC_ASSETS=$PUBLIC_ASSETS
+
 COPY package*.json ./
-
-# Instala todas las dependencias (incluyendo devDependencies para el build)
 RUN npm ci
 
-# Copia el código fuente
 COPY . .
-
-# Construye la aplicación
 RUN npm run build
 
-# Etapa de producción: imagen más ligera
-FROM node:22-alpine AS production
+# ----------
 
-# Establece el directorio de trabajo
+FROM node:22-alpine
+
 WORKDIR /app
 
-# Asegura que el servidor escuche en 0.0.0.0
+# Usuario no-root (Coolify best practice)
+RUN addgroup --system app && adduser --system --ingroup app app
+
 ENV HOST=0.0.0.0
 ENV PORT=4321
 
-# Copia las dependencias de producción desde la etapa base
-COPY --from=base /app/package*.json ./
-COPY --from=base /app/node_modules ./node_modules
+COPY --from=build /app/package*.json ./
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
 
-# Copia los archivos construidos
-COPY --from=base /app/dist ./dist
+# Healthcheck para Coolify
+RUN apk add --no-cache curl
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+  CMD curl -f http://localhost:${PORT}/ || exit 1
 
-# Expone el puerto (por defecto 4321 en Astro SSR)
 EXPOSE 4321
 
-# Comando para ejecutar la aplicación
-CMD ["npm", "start"]
+USER app
+
+CMD ["node", "./dist/server/entry.mjs"]
