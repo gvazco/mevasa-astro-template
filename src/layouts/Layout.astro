@@ -33,6 +33,7 @@ const description =
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=PT+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <ClientRouter />
   </head>
 
@@ -57,5 +58,18 @@ const description =
     <slot name="after-main-content" />
 
     <Footer />
+
+    <script>
+      import AOS from 'aos';
+      document.addEventListener('astro:page-load', () => {
+        if (typeof AOS !== 'undefined') {
+          AOS.init({
+            easing: 'ease',
+            duration: 1800,
+            once: true,
+          });
+        }
+      });
+    </script>
   </body>
 </html>

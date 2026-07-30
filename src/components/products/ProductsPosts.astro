@@ -1,5 +1,5 @@
 ---
-import { ProductsSchema, DirectusProductsResponseSchema } from '@/types';
+import { DirectusProductsResponseSchema } from '@/types';
 import PostCard from './PostCard.astro';
 const url = `${import.meta.env.API_ITEMS}/products?fields=product_category.*,date_created,date_updated,title,excerpt,slug,cover_image,navigation_options,button_label,button_navigation`;
 const res = await fetch(url);
