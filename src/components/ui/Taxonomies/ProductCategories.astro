@@ -1,0 +1,41 @@
+---
+import { DirectusCategoriesResponseSchema } from '@/types';
+const catUrl = `${import.meta.env.API_ITEMS}/products_categories`;
+const catResponse = await fetch(catUrl);
+const catJson = await catResponse.json();
+const newCatData = DirectusCategoriesResponseSchema.parse(catJson);
+const { data: catData } = newCatData;
+---
+
+<div class="mt-5 my-3 slider overflow-y-hidden">
+  <div class="list">
+    {
+      catData
+        .filter((cat) => cat.status === 'published')
+        .map((cat) => (
+          <div class="item">
+            <a
+              href={`/catalogo/categoria/${cat.slug}`}
+              class="inline-block py-1 px-5 text-sm text-white bg-dark p-5 bg-yellow-700 hover:bg-yellow-600 "
+            >
+              {cat.name}
+            </a>
+          </div>
+        ))
+    }
+    {
+      catData
+        .filter((cat) => cat.status === 'published')
+        .map((cat) => (
+          <div class="item">
+            <a
+              href={`/catalogo/categoria/${cat.slug}`}
+              class="inline-block py-1 px-5 text-sm text-white bg-dark p-5 bg-yellow-700 hover:bg-yellow-600"
+            >
+              {cat.name}
+            </a>
+          </div>
+        ))
+    }
+  </div>
+</div>

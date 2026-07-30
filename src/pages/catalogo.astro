@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import ProductsPosts from '@/components/products/ProductsPosts.astro';
-import ProductCategories from '@/components/ui/ProductCategories.astro';
+import ProductCategories from '@/components/ui/Taxonomies/ProductCategories.astro';
 import { DirectusPageResponseSchema } from '@/types';
 const newUrl = `${import.meta.env.API_ITEMS}/pages?filter[slug][_eq]=catalogo`;
 const newResponse = await fetch(newUrl);
