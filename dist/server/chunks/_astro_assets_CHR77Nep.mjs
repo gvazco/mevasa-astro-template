@@ -1,4 +1,4 @@
-import { A as AstroError, I as InvalidComponentArgs, N as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, b as isRemoteAllowed, R as RemoteImageNotAllowed, w as joinPaths, E as ExpectedImage, i as isRemotePath, L as LocalImageUsedWrongly, M as MissingImageDimension, U as UnsupportedImageFormat, x as IncompatibleDescriptorOptions, y as UnsupportedImageConversion, z as InvalidImageService, B as ExpectedImageOptions, C as ExpectedNotESMImage, D as ImageMissingAlt, m as maybeRenderHead, h as addAttribute, s as spreadAttributes, f as renderTemplate, G as FontFamilyNotFound, u as unescapeHTML } from './server_Ctw-Faaj.mjs';
+import { A as AstroError, I as InvalidComponentArgs, N as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, b as isRemoteAllowed, R as RemoteImageNotAllowed, w as joinPaths, E as ExpectedImage, i as isRemotePath, L as LocalImageUsedWrongly, M as MissingImageDimension, U as UnsupportedImageFormat, x as IncompatibleDescriptorOptions, y as UnsupportedImageConversion, z as InvalidImageService, B as ExpectedImageOptions, C as ExpectedNotESMImage, D as ImageMissingAlt, m as maybeRenderHead, h as addAttribute, s as spreadAttributes, f as renderTemplate, G as FontFamilyNotFound, u as unescapeHTML } from './server_D_DpHbm5.mjs';
 import * as mime from 'mrmime';
 import 'clsx';
 import 'piccolore';
@@ -1490,7 +1490,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './sharp_BjB6Ugyf.mjs'
+      './sharp_DoNANsqO.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -1821,7 +1821,7 @@ const $$Font = createComponent(($$result, $$props, $$slots) => {
 }, "/home/gustavovazco/Documentos/GitHub/mevasa-astro-template/node_modules/astro/components/Font.astro", void 0);
 
 const assetQueryParams = undefined;
-					const imageConfig = {"endpoint":{"entrypoint":"astro/assets/endpoint/node","route":"/_image"},"service":{"entrypoint":"astro/assets/services/sharp","config":{}},"domains":["coffeeshop.local","api-mevasa.mevasa-comercializadora.com"],"remotePatterns":[],"responsiveStyles":false};
+					const imageConfig = {"endpoint":{"entrypoint":"astro/assets/endpoint/node","route":"/_image"},"service":{"entrypoint":"astro/assets/services/sharp","config":{}},"domains":["api-mevasa.mevasa-comercializadora.com"],"remotePatterns":[],"responsiveStyles":false};
 					Object.defineProperty(imageConfig, 'assetQueryParams', {
 						value: assetQueryParams,
 						enumerable: false,
