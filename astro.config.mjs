@@ -21,6 +21,6 @@ export default defineConfig({
   },
 
   image: {
-    domains: ["coffeeshop.local", "api-mevasa.mevasa-comercializadora.com"],
+    domains: ["api-mevasa.mevasa-comercializadora.com"],
   },
 });
