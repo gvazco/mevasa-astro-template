@@ -1,0 +1,1 @@
+import{n as e,t}from"./preload-helper.CwV5veAR.js";var n=new e({gallery:`#gallery`,children:`a`,pswpModule:()=>t(()=>import(`./photoswipe.esm.BItn3ynZ.js`),[])});n.init(),document.addEventListener(`astro:after-swap`,function(){n.init()});

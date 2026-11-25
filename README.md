@@ -12,7 +12,7 @@ Sitio web corporativo de **MeVasa Comercializadora** construido con **Astro 6 (S
 
 ## Requisitos
 
-- **Node.js 22+** (ver `.nvmrc`: `22.12.0`)
+- **Node.js 22.23.4+** (ver `.nvmrc`)
 
 ## Instalación
 
@@ -85,7 +85,7 @@ src/
 
 ## Despliegue
 
-Docker vía `dockerfile` (imagen final `node:22-alpine`, usuario no-root, healthcheck). Desplegado en **Coolify**, que pasa las variables de entorno como build args. No hay CI/CD.
+Desplegado en **Coolify con Railpack**, que detecta Node desde `package.json`, instala dependencias, ejecuta `npm run build` y usa `npm run start`. `.nvmrc` y `engines.node` fijan Node en `22.23.4` o posterior. Si Coolify tiene definida la variable `RAILPACK_NODE_VERSION`, usa `22.23.4` porque esa variable tiene prioridad. El `dockerfile` queda disponible como alternativa.
 
 ```bash
 # Build de las imágenes localmente, si hace falta

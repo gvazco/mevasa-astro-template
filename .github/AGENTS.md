@@ -36,7 +36,7 @@ No `lint`, `test`, or `format` scripts exist. Prettier config is in `.prettierrc
 
 ## Gotchas
 
-- **Node version mismatch:** `.nvmrc` says 18.20.8 but `package.json` requires `>=22.12.0` and Docker uses `node:22-alpine`. Use Node 22+.
+- **Node 22.23.4+:** `.nvmrc`, `package.json` engines, and Docker image all require a version supported by Astro.
 - **Tailwind v4:** No `tailwind.config.*`. Theme is CSS-first in `src/styles/global.css` via `@theme` block. Custom utilities (`bg-image`, `coffee-icon`, etc.) defined with `@utility`.
 - **Path alias:** `@/*` → `src/*` (used in all imports).
 - **Unused declared deps:** `gsap`, `@astrojs/react` are in `package.json` but not imported in `src/`. `swiper` CSS is loaded but JS import is absent.
@@ -46,4 +46,4 @@ No `lint`, `test`, or `format` scripts exist. Prettier config is in `.prettierrc
 
 ## Deployment
 
-Docker via `dockerfile` (node:22-alpine, `npm ci`, `npm run build`, `node ./dist/server/entry.mjs`). Deployed through Coolify. No CI/CD workflows.
+Coolify deploys with Railpack, which detects Node from `package.json`, installs with npm, runs `npm run build`, and uses `npm run start`. `.nvmrc` and `package.json` require Node 22.23.4 or newer. If `RAILPACK_NODE_VERSION` is set in Coolify, it takes precedence and must be `22.23.4` or newer. The `dockerfile` remains an alternative deployment path. No CI/CD workflows.

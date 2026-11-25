@@ -56,12 +56,12 @@ Los archivos `.env.development` y `.env.production` están en `.gitignore`. Un c
 
 ## Operación y despliegue
 
-- Despliegue con Docker (ver `dockerfile`: `node:22-alpine`, `npm ci`, `npm run build`, `node ./dist/server/entry.mjs`) vía Coolify.
+- Despliegue con Railpack vía Coolify. Railpack detecta Node desde `package.json`, instala dependencias y ejecuta los scripts `build` y `start`. El `dockerfile` queda como alternativa.
 - No hay CI/CD workflows.
 - `src/pages/api/` existe pero está vacío.
 
 ## Gotchas conocidos
 
-- **Node 22+:** `.nvmrc` (`22.12.0`), `package.json` engines (`>=22.12.0`) y Docker (`node:22-alpine`) coinciden en Node 22.
+- **Node 22.23.4+:** `.nvmrc` y `package.json` engines fijan la versión mínima requerida por Astro. Si se configura `RAILPACK_NODE_VERSION` en Coolify, debe ser `22.23.4` o superior.
 - **Deps sin uso:** `gsap`, `@astrojs/react` están en `package.json` pero no se importan en `src/`.
 - **Generados y gitignoreados:** `.astro/` y `dist/` no se versionan.

@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime.WkwZ5CU-.js";import{t}from"./aos.BfgFVLsd.js";var n=e(t(),1);document.addEventListener(`astro:page-load`,()=>{n.default!==void 0&&n.default.init({easing:`ease`,duration:1800})});
