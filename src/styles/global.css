@@ -28,11 +28,11 @@
   --icon-size: 4rem;
 }
 
-@utility bg-image {
+/* @utility bg-image {
   background-image: url("../assets/bg_home.jpg");
   background-size: cover;
   background-position: center;
-}
+} */
 
 @utility coffee-icon {
   content: "";

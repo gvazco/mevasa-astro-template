@@ -1,3 +1,3 @@
-const onRequest = (_, next) => next();
-
+// \0noop-middleware
+var onRequest = (_, next) => next();
 export { onRequest };

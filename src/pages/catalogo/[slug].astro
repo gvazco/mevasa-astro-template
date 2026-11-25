@@ -51,16 +51,20 @@ const { data: product } = post.data;
           <span class="mx-3 h-auto text-gray-400 font-medium">→</span>
         </li>
 
-        <li class="inline-flex items-center">
-          <a
-            href={`/catalogo/categoria/${product[0].product_category.slug}`}
-            class="text-gray-600 hover:text-blue-500"
-          >
-            {product[0].product_category.name}
-          </a>
+        {
+          product[0].product_category && (
+            <li class="inline-flex items-center">
+              <a
+                href={`/catalogo/categoria/${product[0].product_category.slug}`}
+                class="text-gray-600 hover:text-blue-500"
+              >
+                {product[0].product_category.name}
+              </a>
 
-          <span class="mx-3 h-auto text-gray-400 font-medium">→</span>
-        </li>
+              <span class="mx-3 h-auto text-gray-400 font-medium">→</span>
+            </li>
+          )
+        }
 
         <li class="inline-flex items-center">
           {product[0].title.slice(0, 10) + '...'}
@@ -86,12 +90,16 @@ const { data: product } = post.data;
                 {product[0].title}
               </p>
 
-              <div class="mt-3">
-                <PostCategories
-                  name={product[0].product_category.name}
-                  slug={product[0].product_category.slug}
-                />
-              </div>
+              {
+                product[0].product_category && (
+                  <div class="mt-3">
+                    <PostCategories
+                      name={product[0].product_category.name}
+                      slug={product[0].product_category.slug}
+                    />
+                  </div>
+                )
+              }
 
               <p class="mt-6 text-lg leading-8 text-gray-600">
                 {product[0].excerpt}

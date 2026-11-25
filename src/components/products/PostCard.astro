@@ -45,12 +45,16 @@ const { product } = Astro.props;
             </a>
           </h3>
 
-          <div class="mt-3">
-            <PostCategories
-              name={product?.product_category?.name}
-              slug={product?.product_category?.slug}
-            />
-          </div>
+          {
+            product.product_category && (
+              <div class="mt-3">
+                <PostCategories
+                  name={product.product_category.name}
+                  slug={product.product_category.slug}
+                />
+              </div>
+            )
+          }
           <dl
             class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none"
           >

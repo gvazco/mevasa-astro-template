@@ -13,11 +13,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^10.0.4",
-    "@astrojs/react": "^5.0.3",
+    "@astrojs/node": "^11.1.14",
+    "@astrojs/react": "^7.1.9",
     "@tailwindcss/vite": "^4.1.11",
-    "astro": "^6.1.5",
     "aos": "^3.0.0-beta.6",
+    "astro": "^7.4.13",
     "gsap": "^3.13.0",
     "leaflet": "^1.9.4",
     "notyf": "^3.10.0",

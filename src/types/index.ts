@@ -128,7 +128,7 @@ export const DirectusProductsSchema = DirectusBaseSchema.omit({
   date_created: z.string().datetime(),
   date_updated: z.string().datetime().nullable().optional(),
   excerpt: z.string().nullable().optional(),
-  product_category: DirectusCategorySchema,
+  product_category: DirectusCategorySchema.nullable(),
   navigation_options: z.boolean().optional(),
   button_label: z.string().nullable().optional(),
   button_navigation: z.string().nullable().optional(),
